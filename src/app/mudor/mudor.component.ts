@@ -17,8 +17,6 @@ export class MudorComponent implements OnInit {
   ngOnInit() {
   }
 
-  //currentPlantName = "Mudor";
-
   PLANTS = PLANTS;
 
   currentPlantName = PLANTS[0].name;

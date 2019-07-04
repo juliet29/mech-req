@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PLANTS } from '../plantInfo';
 
 @Component({
   selector: 'app-lav-hill',
@@ -12,5 +13,8 @@ export class LavHillComponent implements OnInit {
   ngOnInit() {
   }
 
-  currentPlantName = "Lavender Hill"
+  PLANTS = PLANTS;
+
+  currentPlantName = PLANTS[1].name;
+  currentLocations = PLANTS[1].locations;
 }

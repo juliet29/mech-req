@@ -14,6 +14,12 @@ export class PlantSelectComponent implements OnInit {
   
   @Input() plantName: string;
   @Input() locations: any;
+
+  clickMessage = '';
+
+  onClickMe() {
+    this.clickMessage = "What's the problem?";
+  }
   
   
 

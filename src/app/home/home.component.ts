@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
-import { plants } from '../plants';
+import { PLANTS } from '../plantInfo';
 
 
 @Component({
@@ -9,13 +8,11 @@ import { plants } from '../plants';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  
-
   constructor() { }
 
   ngOnInit() {
   }
 
-  plants = plants;
+  plants = PLANTS;
 
 }

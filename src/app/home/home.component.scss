@@ -3,6 +3,7 @@
     width: 30em;
     height: 10em;
     border-radius: 10%;
+    /* need to fix this for responsiveness*/
     margin: 5em 8em; 
     display: flex;
     justify-content: center;
@@ -12,7 +13,9 @@
     a {
         color: white;
         text-align: center;
-        
+        /* all links should fill their containers*/
+        width: 100%;
+        line-height: 10em;
     }
 
 }
