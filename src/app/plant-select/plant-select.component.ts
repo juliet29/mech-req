@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { ModalService } from 'src/app/modal.service';
 
 @Component({
   selector: 'app-plant-select',
@@ -6,10 +7,12 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./plant-select.component.scss']
 })
 export class PlantSelectComponent implements OnInit {
+  bodyText: string;
 
-  constructor() { }
+  constructor(private modalService: ModalService) { }
 
   ngOnInit() {
+    this.bodyText = 'This text can be updated in modal 1';
   }
   
   @Input() plantName: string;
@@ -19,6 +22,14 @@ export class PlantSelectComponent implements OnInit {
 
   onClickMe() {
     this.clickMessage = "What's the problem?";
+  }
+
+  openModal(id: string) {
+      this.modalService.open(id);
+  }
+
+  closeModal(id: string) {
+      this.modalService.close(id);
   }
   
   

@@ -7,6 +7,7 @@ import { HomeComponent } from './home/home.component';
 import { MudorComponent } from './mudor/mudor.component';
 import { LavHillComponent } from './lav-hill/lav-hill.component';
 import { PlantSelectComponent } from './plant-select/plant-select.component';
+import { ModalComponent } from './modal/modal.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { PlantSelectComponent } from './plant-select/plant-select.component';
     HomeComponent,
     MudorComponent,
     LavHillComponent,
-    PlantSelectComponent
+    PlantSelectComponent,
+    ModalComponent
   ],
   imports: [
     BrowserModule,
