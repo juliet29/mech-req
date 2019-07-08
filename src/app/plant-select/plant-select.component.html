@@ -1,21 +1,13 @@
 <h1> Where is the problem at {{ plantName }} ?</h1>
 <ul class="location-select">
     <li  *ngFor="let location of locations">
-        <button (click)="onClickMe()"> It is at the {{ location }}</button> 
-        {{clickMessage}}   
+        <button (click)="openModal('custom-modal-1')"> It is at the {{ location }}</button> 
     </li>
 </ul>
 
-<div>
-    <h1>Sample for the Modal</h1>
-    <p>{{bodyText}}</p>
-    <button (click)="openModal('custom-modal-1')">Open Modal 1</button>
-    <button (click)="openModal('custom-modal-2')">Open Modal 2</button>
-</div>
-
 <app-modal id="custom-modal-1">
-    <h1>A Custom Angular 7 Modal!</h1>
-    <p>Home page text: <input type="text" [(ngModel)]="bodyText" /></p>
+    <div> What is the problem at the location?</div>
+    <input type="text" placeholder="Enter the problem here">
     <button (click)="closeModal('custom-modal-1');">Close</button>
 </app-modal>
     

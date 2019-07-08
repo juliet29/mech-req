@@ -26,10 +26,12 @@ export class PlantSelectComponent implements OnInit {
 
   openModal(id: string) {
       this.modalService.open(id);
+      console.log("opened modal");
   }
 
   closeModal(id: string) {
       this.modalService.close(id);
+      console.log("closed modal");
   }
   
   

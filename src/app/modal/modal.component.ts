@@ -30,6 +30,7 @@ export class ModalComponent implements OnInit, OnDestroy {
     //close Modal on background click
     this.element.addEventListener('click', function (e: any) {
       if (e.target.className === 'app-modal') {
+        console.log(e.target);
         modal.close();
       }
     });
@@ -38,7 +39,7 @@ export class ModalComponent implements OnInit, OnDestroy {
     this.modalService.add(this);
   }
 
-  // move self from modal service when component is destroyed
+  // remove self from modal service when component is destroyed
   ngOnDestroy(): void{
     this.modalService.remove(this.id);
     this.element.remove();
@@ -46,13 +47,18 @@ export class ModalComponent implements OnInit, OnDestroy {
 
   // open modal
   open(): void{
-      this.element.style.display = 'block';
       document.body.classList.add('app-modal');
+      console.log(document.body.classList);
+      this.element.firstChild.style.display = 'block';
+      this.element.lastChild.style.display = 'block';
+
+
   }
 
   // close modal
   close(): void {
-    this.element.style.display = 'none';
+    this.element.firstChild.style.display = 'none';
+    this.element.lastChild.style.display = 'none';
     document.body.classList.remove('app-modal');
   }
 
