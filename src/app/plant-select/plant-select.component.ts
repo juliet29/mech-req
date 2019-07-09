@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ModalService } from 'src/app/modal.service';
 
+
 @Component({
   selector: 'app-plant-select',
   templateUrl: './plant-select.component.html',
@@ -26,12 +27,10 @@ export class PlantSelectComponent implements OnInit {
 
   openModal(id: string) {
       this.modalService.open(id);
-      console.log("opened modal");
   }
 
   closeModal(id: string) {
       this.modalService.close(id);
-      console.log("closed modal");
   }
   
   
