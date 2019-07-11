@@ -1,0 +1,20 @@
+<h1>View Existing Service Requests</h1>
+
+<table>
+    <tr>
+        <th>Location of Complaint</th>
+        <th>Sender</th>
+        <th>Date Sent</th>
+        <th>Complaint</th>
+    </tr>
+    <tr *ngFor="let a_request of request">
+            <td>{{ a_request.location }}</td>
+            <td>{{ a_request.sender }}</td>
+            <td>{{ a_request.time_sent }}</td>
+            <td>{{ a_request.complaint }}</td>
+
+    </tr>
+    
+</table>
+
+<a routerLink="/">Go Home</a>

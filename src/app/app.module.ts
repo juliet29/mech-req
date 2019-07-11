@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http'; 
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -10,6 +11,7 @@ import { LavHillComponent } from './lav-hill/lav-hill.component';
 import { PlantSelectComponent } from './plant-select/plant-select.component';
 import { ModalComponent } from './modal/modal.component';
 import { ProblemFormComponent } from './problem-form/problem-form.component';
+import { ViewRequestComponent } from './view-request/view-request.component';
 
 @NgModule({
   declarations: [
@@ -19,12 +21,14 @@ import { ProblemFormComponent } from './problem-form/problem-form.component';
     LavHillComponent,
     PlantSelectComponent,
     ModalComponent,
-    ProblemFormComponent
+    ProblemFormComponent,
+    ViewRequestComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
