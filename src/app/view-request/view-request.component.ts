@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {RequestService} from 'src/app/services/request.service'
-//import { sendRequest } from 'selenium-webdriver/http';
+
 
 const months = ["JAN", "FEB", "MAR","APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
 
@@ -15,19 +15,16 @@ export class ViewRequestComponent implements OnInit {
   // array of all the ServiceRequest objects from the API
   public request;
 
-  // object representing the data that will be sent to the API
-  public new_request: any;
-
   constructor(private _RequestService: RequestService) { }
 
   ngOnInit() {
     this.getRequest();
-    // this.new_request={};
   }
 
   // get the requests from the API
   getRequest() {
     console.log("getRequest");  
+    
     this._RequestService.list().subscribe(
       // on success, convert data into a nice format to display
       data => {

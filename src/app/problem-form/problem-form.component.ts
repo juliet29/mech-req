@@ -1,5 +1,8 @@
 import { Component, OnInit, Input} from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { FormControl, Validators, FormGroup } from '@angular/forms';
+import { RequestService } from 'src/app/services/request.service';
+import {throwError} from 'rxjs';
+
 
 @Component({
   selector: 'app-problem-form',
@@ -8,12 +11,33 @@ import { FormControl, Validators } from '@angular/forms';
 })
 export class ProblemFormComponent implements OnInit {
 
-  constructor() { }
+  // object representing the data that will be sent to the API
+  public new_request: any;
+
+  constructor(private _RequestService: RequestService) { }
 
   ngOnInit() {
+    this.new_request={};
   }
 
-  @Input() problem = new FormControl('', Validators.required);
+  serviceRequestForm = new FormGroup({
+    request_id: new FormControl(''),
+    sender: new FormControl(''),
+    time_sent: new FormControl(''),
+    location: new FormControl(''),
+    complaint: new FormControl(''),
+  })
+
+  onSubmit(){
+    this.new_request = this.serviceRequestForm.value;
+    console.warn(this.new_request);
+    this._RequestService.create(this.new_request);
+
+  }
+
+
+
+  
 
 
 }

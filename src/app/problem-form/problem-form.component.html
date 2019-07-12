@@ -1,4 +1,27 @@
-<label>
-    <input type="text" [formControl]="problem" placeholder="Enter the problem here" (ngSubmit)="onSubmit">
-</label>
+<form [formGroup]="serviceRequestForm" (ngSubmit)="onSubmit()">
+    <label>
+        Request ID:
+        <input type="text" formControlName="request_id">
+    </label>
+    <label>
+        Name of Sender:
+        <input type="text" formControlName="sender">
+    </label>
+    <label>
+        Time:
+        <input type="text" formControlName="time_sent">
+    </label>
+    <label>
+        Location:
+        <input type="text" formControlName="location">
+    </label>
+    <label>
+        Complaint:
+        <input type="text" formControlName="complaint">
+    </label>
+
+    <button type="submit">Submit Request</button>
+</form>
+
+
 

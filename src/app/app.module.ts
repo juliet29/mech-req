@@ -13,6 +13,10 @@ import { ModalComponent } from './modal/modal.component';
 import { ProblemFormComponent } from './problem-form/problem-form.component';
 import { ViewRequestComponent } from './view-request/view-request.component';
 
+import { EventEmitterService } from 'src/app/services/event-emitter.service';
+import { RequestService } from 'src/app/services/request.service';
+import { ModalService } from './services/modal.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,7 +34,10 @@ import { ViewRequestComponent } from './view-request/view-request.component';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [EventEmitterService,
+    RequestService,
+    ModalService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
