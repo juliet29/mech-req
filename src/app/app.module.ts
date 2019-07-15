@@ -13,9 +13,10 @@ import { ModalComponent } from './modal/modal.component';
 import { ProblemFormComponent } from './problem-form/problem-form.component';
 import { ViewRequestComponent } from './view-request/view-request.component';
 
-import { EventEmitterService } from 'src/app/services/event-emitter.service';
 import { RequestService } from 'src/app/services/request.service';
 import { ModalService } from './services/modal.service';
+import { RequestParentComponent } from './request-parent/request-parent.component';
+import { PlantIdService } from 'src/app/services/plant-id.service';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { ModalService } from './services/modal.service';
     PlantSelectComponent,
     ModalComponent,
     ProblemFormComponent,
-    ViewRequestComponent
+    ViewRequestComponent,
+    RequestParentComponent
   ],
   imports: [
     BrowserModule,
@@ -34,9 +36,9 @@ import { ModalService } from './services/modal.service';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [EventEmitterService,
-    RequestService,
-    ModalService
+  providers: [RequestService,
+    ModalService,
+    PlantIdService
   ],
   bootstrap: [AppComponent]
 })

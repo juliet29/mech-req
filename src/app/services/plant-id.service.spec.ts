@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { EventEmitterService } from './event-emitter.service';
+import { PlantIdService } from './plant-id.service';
 
-describe('EventEmitterService', () => {
+describe('PlantIdService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: EventEmitterService = TestBed.get(EventEmitterService);
+    const service: PlantIdService = TestBed.get(PlantIdService);
     expect(service).toBeTruthy();
   });
 });

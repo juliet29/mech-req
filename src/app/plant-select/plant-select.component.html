@@ -6,8 +6,8 @@
 </ul>
 
 <app-modal id="custom-modal-1">
-    <div> What is the problem at the location?</div>
-    <app-problem-form></app-problem-form>
+    <div> What is the problem at the location ?</div>
+    <app-problem-form [currentPlantName] = "plantName"></app-problem-form>
     <button (click)="closeModal('custom-modal-1');">Close</button>
 </app-modal>
     

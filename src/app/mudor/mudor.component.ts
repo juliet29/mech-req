@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { PLANTS } from '../plantInfo';
+import { PlantIdService } from 'src/app/services/plant-id.service';
 
 var currentPlant =  '';
 export default currentPlant;
@@ -12,9 +13,10 @@ export default currentPlant;
 
 
 export class MudorComponent implements OnInit {
-  constructor() { }
+  constructor(private _PlantIdService: PlantIdService) { }
 
   ngOnInit() {
+    this._PlantIdService.updatePlantID(this.currentPlantName)
   }
 
   PLANTS = PLANTS;

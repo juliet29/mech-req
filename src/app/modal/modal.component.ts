@@ -47,6 +47,8 @@ export class ModalComponent implements OnInit, OnDestroy {
 
   // open modal
   open(): void{
+      var hello = event.target;
+      console.log(hello);
       document.body.classList.add('app-modal');
       this.element.firstChild.style.display = 'block';
       this.element.lastChild.style.display = 'block';

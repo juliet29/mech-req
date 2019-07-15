@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {RequestService} from 'src/app/services/request.service'
 
-
 const months = ["JAN", "FEB", "MAR","APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
 
 @Component({
@@ -24,7 +23,6 @@ export class ViewRequestComponent implements OnInit {
   // get the requests from the API
   getRequest() {
     console.log("getRequest");  
-    
     this._RequestService.list().subscribe(
       // on success, convert data into a nice format to display
       data => {
@@ -41,13 +39,6 @@ export class ViewRequestComponent implements OnInit {
       // on completion, log completion
       () => console.log('done loading posts')
     );  
-  }
-
-  // send new request to the API
-  createRequest() {
-    console.log("createRequest");
-    // refresh the list 
-    // or throw an error
   }
 
 }

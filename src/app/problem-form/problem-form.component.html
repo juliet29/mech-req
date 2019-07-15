@@ -1,22 +1,18 @@
 <form [formGroup]="serviceRequestForm" (ngSubmit)="onSubmit()">
     <label>
-        Request ID:
-        <input type="text" formControlName="request_id">
-    </label>
-    <label>
         Name of Sender:
         <input type="text" formControlName="sender">
     </label>
     <label>
         Time:
-        <input type="text" formControlName="time_sent">
+        <p>{{ today_nice }}</p>
     </label>
     <label>
         Location:
-        <input type="text" formControlName="location">
+        <p>This is the {{ currentPlantName }}</p>
     </label>
     <label>
-        Complaint:
+        Complaint: 
         <input type="text" formControlName="complaint">
     </label>
 

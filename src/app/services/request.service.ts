@@ -31,7 +31,6 @@ export class RequestService {
 
   create(newRequest){
     var mytest: any;
-    console.log(newRequest);
     mytest = this.http.post(api_site, newRequest).subscribe(
       data  => {
         console.log("POST Request is successful ", data);

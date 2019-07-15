@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PLANTS } from '../plantInfo';
+import { PlantIdService } from 'src/app/services/plant-id.service';
 
 @Component({
   selector: 'app-lav-hill',
@@ -8,9 +9,10 @@ import { PLANTS } from '../plantInfo';
 })
 export class LavHillComponent implements OnInit {
 
-  constructor() { }
+  constructor(private _PlantIdService: PlantIdService) { }
 
   ngOnInit() {
+    this._PlantIdService.updatePlantID(this.currentPlantName)
   }
 
   PLANTS = PLANTS;
