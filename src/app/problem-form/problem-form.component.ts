@@ -22,27 +22,32 @@ export class ProblemFormComponent implements OnInit {
   today: any;
   today_nice: any;
   subscription: any;
+  subscription2: any;
 
   // all variables for the new_request are null to begin with
   request_id: any;
   sender: any;
   time_sent: any;
+  plant: any;
   location: string;
   complaint: any;
 
 
   constructor(private _RequestService: RequestService, 
     private _PlantIdService: PlantIdService) {
-      // get info about the current location
+      // get info about the current plant and location
       this.subscription = this._PlantIdService.getPlantID().subscribe(
-        currentPlant => this.location = currentPlant
-      )
+        currentPlant => this.plant = currentPlant
+      );
+      this.subscription2 = this._PlantIdService.getLocationID().subscribe(
+        currentLocation => this.location = currentLocation
+      );
+
     }
 
   ngOnInit() {
     this.new_request={};
     this.today_nice = this.current_time();
-    this.location = 'a cool place';
   }
 
   serviceRequestForm = new FormGroup({
@@ -93,10 +98,12 @@ export class ProblemFormComponent implements OnInit {
     this.request_id = this.IDGenerator()
     this.time_sent = this.today;
     console.log(this.request_id);
+    console.log(this.location);
+    console.log(this.plant);
 
     this.sender = this.serviceRequestForm.get('sender').value;
     this.complaint = this.serviceRequestForm.get('complaint').value;
-    this.postSubmit()
+    //this.postSubmit()
   }
 
   // prepare and actually post the submission
@@ -114,6 +121,7 @@ export class ProblemFormComponent implements OnInit {
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
+    this.subscription2.unsubscribe();
   }
 
   

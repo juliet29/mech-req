@@ -1,6 +1,7 @@
-import { Component, OnInit, ElementRef, Input, OnDestroy } from '@angular/core';
-
+import { Component, OnInit, ElementRef, Input, OnDestroy, AfterContentInit } from '@angular/core';
 import { ModalService } from 'src/app/services/modal.service';
+import { PlantIdService } from 'src/app/services/plant-id.service';
+
 
 @Component({
   selector: 'app-modal',
@@ -11,13 +12,17 @@ export class ModalComponent implements OnInit, OnDestroy {
   @Input() id: string;
   private element: any;
 
-  constructor(private modalService: ModalService, private el: ElementRef) { 
+  constructor(private modalService: ModalService, 
+    private el: ElementRef,
+    private _PlantIdService: PlantIdService) { 
     this.element = el.nativeElement;
   }
 
   ngOnInit(): void {
+    this.html = "hello";
+    this._PlantIdService.updateLocationID(this.html);
+    // set up modal as the king pin
     let modal = this;
-
     // ensure id attribute exists
     if (!this.id){
       console.error('modal must have an id');
@@ -45,16 +50,25 @@ export class ModalComponent implements OnInit, OnDestroy {
     this.element.remove();
   }
 
+  html: string;
+  no_html: string;
+  location_html: any;
+
+
   // open modal
   open(): void{
-      var hello = event.target;
-      console.log(hello);
+      //console.log(this.html);
+      // set up so that user can know location when modal is open
+      this.location_html = event.target;
+      this.html = this.location_html.innerHTML;
+      this._PlantIdService.updateLocationID(this.html);
+     // console.log(this.html);
+ 
       document.body.classList.add('app-modal');
       this.element.firstChild.style.display = 'block';
-      this.element.lastChild.style.display = 'block';
-
-
+      this.element.lastChild.style.display = 'block'; 
   }
+   
 
   // close modal
   close(): void {
