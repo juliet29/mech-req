@@ -4,15 +4,10 @@
         <button (click)="openModal('custom-modal-1')"> {{ location }}</button> 
     </li>
 </ul>
-
+ 
 <app-modal id="custom-modal-1">
     <app-problem-form [currentPlantName] = "plantName"></app-problem-form>
     <button class="modal-bttn" (click)="closeModal('custom-modal-1');" [routerLink]="['']">Close</button>
 </app-modal>
     
-
-
-
-
-
 <a class="go-home" routerLink="/">Go Home</a>

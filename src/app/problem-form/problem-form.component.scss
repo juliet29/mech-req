@@ -1,13 +1,21 @@
+@import 'src/more-sass/_variables.scss';
+
 input {
-    width: 85vw;
     height: 2em;
-    margin: 1em 0em;
     border-width: 0.1em;
     padding: 0.5em;
-}
+    width: inherit;
+} 
 
 label {
     display: inline-block;
+    width: 99%;
+    margin: 0 auto;
+
+    p {
+        text-align: left;
+        margin: 0.5rem 0;
+    }
 }
 
 h3, h4, p {
@@ -20,26 +28,13 @@ h3, h4, p {
 
 .form-error {
     p {
-        font-size: 0.5rem;
+        font-size: 0.7rem;
         color: red;
         text-align: left;
     }
 }
 
-button {
-    border-radius: 1%;
-    background-color: lightblue;
-    margin: 1rem auto;
-    display: block;
-    width: 20%;
-    text-align: center;
-    padding: 0.5rem;
-}
-
-button:disabled {
-    background-color: lightgrey;
-}
-
 .complaint {
     height: 5rem;
 }
+

@@ -1,31 +1,40 @@
-.plant-select{
-    background-color: lightblue;
-    height: 10em;
-    border-radius: 10%;
-    /* need to fix this for responsiveness*/
-    display: flex;
-    justify-content: center;
-    align-items: center;
+@import 'src/more-sass/_variables.scss';
 
-    margin: 5em auto;
-    display: block;
+$border-radius: 10%;
+
+.plant-select{
+    background-color: $primaryColor;
+    height: 8rem;
+    border-radius: $border-radius;
+    display: flex;
+    align-items: center;
+    margin: 4em auto;
     width: 80%;
     text-align: center;
-
+    padding: 1rem;
 
     a {
         color: white;
         text-align: center;
-        /* all links should fill their containers*/
         width: 100%;
-        line-height: 11em;
+        height: 100%;
+        padding: 0.2rem;
+        border-radius: $border-radius;
+        display: flex;
+        align-items: center;
+
+        &:hover {
+            background-color: $secondColor;
+        }
+
+        p {
+            text-align: center;
+            width: 100%;
+        }
     }
 
 }
 
-.request {
-    margin: auto;
-    display: block;
-    width: 50%;
-    text-align: center;
+.request-link {
+    @include cute-link();
 }

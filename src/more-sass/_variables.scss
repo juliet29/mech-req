@@ -1,0 +1,66 @@
+// @import 'src/more-sass/_variables.scss';
+
+// variables
+$primaryColor: lightblue;
+$secondColor:  rgb(60, 146, 175);
+$white: white;
+$disabledColor: lightgrey;
+
+// mixins
+@mixin fancy-font {
+    font-style: italic;
+    font-weight: bold;
+}
+
+@mixin cute-link($background-color: transparent, $width: 50%, $color: $secondColor) {
+    @include fancy-font;
+    margin: 2rem auto;
+    display: block;
+    width: $width;
+    text-align: center;
+    background-color: $background-color;
+    border-radius: 1%;
+    color: $color;
+
+    &:hover {
+        color: $color + 50;
+    }
+
+
+}
+
+@mixin cute-button ($background-color: $secondColor, $width: 20%, $color: $white) {
+    margin: 1rem auto;
+    display: block;
+    width: $width;
+    text-align: center;
+    background-color: $background-color;
+    border-radius: 3%;
+    color: $color;
+    padding: 0.5rem;
+
+    &:hover {
+        background-color: $background-color + 50;
+    }
+}
+
+
+// *************** responsiveness ******************* //
+
+// Small tablets and large smartphones (landscape view)
+$screen-sm-min: 576px;
+
+// Small tablets (portrait view)
+$screen-md-min: 768px;
+
+// Tablets and small desktops
+$screen-lg-min: 992px;
+
+// Large tablets and desktops
+$screen-xl-min: 1200px;
+
+@mixin sm {
+    @media (max-width: #{$screen-sm-min} ) {
+        @content;
+    }
+}

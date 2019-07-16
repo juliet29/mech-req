@@ -10,15 +10,15 @@
 
 <form [formGroup]="serviceRequestForm" (ngSubmit)="onSubmit()" [ngClass]="{'hidden': afterSubmit}">
     <label>
-        Name of Sender:
+        <p>Name of Sender:</p>
         <input type="text" formControlName="sender" placheholder="First and Last Name">
     </label>
     <div class="form-error" *ngIf="serviceRequestForm.controls['sender'].invalid && 
     (serviceRequestForm.controls['sender'].dirty || serviceRequestForm.controls['sender'].touched)">
         <p>Please enter your full name.</p>
     </div>
-    <label>
-        Complaint: 
+    <label> 
+        <p>Complaint:</p> 
         <input class="complaint" type="text" formControlName="complaint" placheholder="There is an issue with...">
     </label>
     <div class="form-error" *ngIf="serviceRequestForm.controls['complaint'].invalid && 
@@ -28,7 +28,7 @@
     <button class="modal-bttn" type="submit" [disabled]="serviceRequestForm.pristine || serviceRequestForm.invalid" >Submit Request</button>
 </form>
 
-
+ 
 
 
 

@@ -1,26 +1,39 @@
+@import 'src/more-sass/_variables.scss';
 h1, a, table {
     text-align: center;
 }
 
 table {
-    width: 100%;
-    margin: 3rem 0;
+    max-width: 95vw;
+    margin: 3rem auto;
     border-collapse: collapse;
     overflow-y:scroll;
     height:50vh;
     display:block;
     border-top: 1px solid lightblue;
     border-bottom: 3px solid lightblue;
+    @include sm {
+        font-size: 0.001rem;
+        margin: 1rem 0;
+    }
 }
 
 td, th {
-    padding: 5px 20px;
+    padding: 1rem 2rem;
     text-align: left;
+    @include sm {
+        padding: 1rem 0.1rem;
+        text-align: center;
+    }
 }
 
 tr {
     border: 1px solid lightblue;
 }
 
-
+.tb-overflow {
+    overflow-x: auto;
+    padding: 1rem;
+    margin: 0 auto;
+}
 
