@@ -3,10 +3,11 @@ import { plantClass } from './plantclass';
 export const PLANTS: plantClass[] = [
     {
         name: 'Mudor',
-        locations: ["Drying beds", "Trickling Filter 1", "Sedimentation Tank 1"]
+        locations: ["Coarse Screens", "Buffer Tanks", "UASB", "Drying Beds", "Trickling Filters", "Sedimentation Tanks"]
     },
     {
         name: 'Lavender Hill',
-        locations: ["Recieving Bay", "Treatment Workshop", "Regulating Tanks"]
+        locations: ["Recieving Bay", "Treatment Workshop", "Regulating Tanks", "Buffer Tanks", "UASB", 
+    "Anoxic Tanks", "Aerobic Tanks", "Sedimentation Tanks"]
     }
 ]
