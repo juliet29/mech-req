@@ -23,6 +23,7 @@ export class ProblemFormComponent implements OnInit {
   today_nice: any;
   subscription: any;
   subscription2: any;
+  
 
   // all variables for the new_request are null to begin with
   request_id: any;
@@ -31,7 +32,7 @@ export class ProblemFormComponent implements OnInit {
   plant: any;
   location: string;
   complaint: any;
-
+  afterSubmit: boolean
 
   constructor(private _RequestService: RequestService, 
     private _PlantIdService: PlantIdService) {
@@ -48,11 +49,12 @@ export class ProblemFormComponent implements OnInit {
   ngOnInit() {
     this.new_request={};
     this.today_nice = this.current_time();
+    this.afterSubmit = false;
   }
 
   serviceRequestForm = new FormGroup({
-    sender: new FormControl(''),
-    complaint: new FormControl(''),
+    sender: new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(120)]),
+    complaint: new FormControl('', [Validators.required, Validators.minLength(4)])
   })
 
   // get current time for the submision
@@ -63,7 +65,7 @@ export class ProblemFormComponent implements OnInit {
     if (minutes < 10){
       minutes = '0' + minutes
     }
-    var time = this.today.getHours() + ":" + minutes; // an issue here if get minutes less than 10
+    var time = this.today.getHours() + ":" + minutes;
     var dateTime = date+' at '+time;
     return dateTime;
   }
@@ -71,24 +73,20 @@ export class ProblemFormComponent implements OnInit {
   // generate a unique ID for the submission
   IDGenerator() {
     var length = 8;
-    var timestamp = +new Date;
-    
+    var timestamp = +new Date; 
     var _getRandomInt = function( min, max ) {
      return Math.floor( Math.random() * ( max - min + 1 ) ) + min;
     }
-    
     var generate = function() {
       var ts = timestamp.toString();
       var parts = ts.split( "" ).reverse();
       var id = "";
-      
       for( var i = 0; i < length; ++i ) {
        var index = _getRandomInt( 0, parts.length - 1 );
        id += parts[index];
       }  
       return id;
     }
-
     var new_id = generate();
     return new_id;
   }
@@ -97,13 +95,9 @@ export class ProblemFormComponent implements OnInit {
   onSubmit(){
     this.request_id = this.IDGenerator()
     this.time_sent = this.today;
-    console.log(this.request_id);
-    console.log(this.location);
-    console.log(this.plant);
-
     this.sender = this.serviceRequestForm.get('sender').value;
     this.complaint = this.serviceRequestForm.get('complaint').value;
-    //this.postSubmit()
+    this.afterSubmit = true;
   }
 
   // prepare and actually post the submission
@@ -119,6 +113,7 @@ export class ProblemFormComponent implements OnInit {
     this._RequestService.create(this.new_request);
     }
 
+  // unsubscribe from subscriptions giving info about the location
   ngOnDestroy() {
     this.subscription.unsubscribe();
     this.subscription2.unsubscribe();

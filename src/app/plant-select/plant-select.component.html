@@ -1,14 +1,13 @@
 <h1> Where is the problem at {{ plantName }} ?</h1>
 <ul class="location-select">
     <li  *ngFor="let location of locations">
-        <button (click)="openModal('custom-modal-1')"> It is at the {{ location }}</button> 
+        <button (click)="openModal('custom-modal-1')"> {{ location }}</button> 
     </li>
 </ul>
 
 <app-modal id="custom-modal-1">
-    <div> What is the problem at the location ?</div>
     <app-problem-form [currentPlantName] = "plantName"></app-problem-form>
-    <button (click)="closeModal('custom-modal-1');">Close</button>
+    <button class="close" (click)="closeModal('custom-modal-1');" [routerLink]="['']">Close</button>
 </app-modal>
     
 
