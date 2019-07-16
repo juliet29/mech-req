@@ -4,6 +4,7 @@ import { RequestService } from 'src/app/services/request.service';
 import { PlantIdService } from 'src/app/services/plant-id.service';
 
 import {throwError, generate} from 'rxjs';
+import { post } from 'selenium-webdriver/http';
 
 
 const months = ["January", "Februaury", "March","April", "May", "June", "July", "August", "September", "October", "November", "December"];
@@ -97,7 +98,9 @@ export class ProblemFormComponent implements OnInit {
     this.time_sent = this.today;
     this.sender = this.serviceRequestForm.get('sender').value;
     this.complaint = this.serviceRequestForm.get('complaint').value;
+    this.location = this.plant + ' - '+ this.location;
     this.afterSubmit = true;
+    this.postSubmit();
   }
 
   // prepare and actually post the submission
