@@ -2,19 +2,22 @@
 
 <table>
     <tr>
+        <th>Date Sent</th>
+        <th>Time Sent</th>
+        <th>Request ID</th>
         <th>Location of Complaint</th>
         <th>Sender</th>
-        <th>Date Sent</th>
-        <th>Complaint</th>
+        <th>Complaint</th> 
     </tr>
     <tr *ngFor="let a_request of request">
+            <td>{{ a_request.date_sent }}</td>
+            <td>{{ a_request.time_sent }}</td>
+            <td>{{ a_request.request_id }}</td>
             <td>{{ a_request.location }}</td>
             <td>{{ a_request.sender }}</td>
-            <td>{{ a_request.time_sent }}</td>
             <td>{{ a_request.complaint }}</td>
-
     </tr>
     
 </table>
 
-<a routerLink="/">Go Home</a>
+<a class="go-home" routerLink="/">Go Home</a>

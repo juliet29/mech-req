@@ -29,7 +29,12 @@ export class ViewRequestComponent implements OnInit {
         this.request = data;
         for (let a_request of this.request) {
           let s_date = new Date(a_request.time_sent);
-          a_request.time_sent = s_date.getDate() + "-" + months[s_date.getMonth()] + "-" + s_date.getFullYear()
+          a_request.date_sent = s_date.getDate() + "-" + months[s_date.getMonth()] + "-" + s_date.getFullYear()
+          var minutes: any = s_date.getMinutes()
+          if (minutes < 10){
+            minutes = '0' + minutes
+          }
+          a_request.time_sent= s_date.getHours() + ":" + minutes;
         }
       },
 
@@ -37,7 +42,8 @@ export class ViewRequestComponent implements OnInit {
       err => console.error(err),
 
       // on completion, log completion
-      () => console.log('done loading posts')
+      () => {console.log('done loading posts');
+        console.log(this.request)}
     );  
   }
 

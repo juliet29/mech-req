@@ -34,3 +34,20 @@ ul {
     height: 100%;
     cursor: pointer;
   }
+
+  .go-home {
+    margin: auto;
+    display: block;
+    width: 50%;
+    text-align: center;
+}
+
+.modal-bttn {
+    background-color: lightblue;
+    margin: 1rem auto;
+    display: block;
+    width: 20%;
+    text-align: center;
+    padding: 0.5rem;
+    border-radius: 1%;
+}

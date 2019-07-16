@@ -1,13 +1,16 @@
 .plant-select{
     background-color: lightblue;
-    width: 30em;
     height: 10em;
     border-radius: 10%;
     /* need to fix this for responsiveness*/
-    margin: 5em 8em; 
     display: flex;
     justify-content: center;
     align-items: center;
+
+    margin: 5em auto;
+    display: block;
+    width: 80%;
+    text-align: center;
 
 
     a {
@@ -15,7 +18,14 @@
         text-align: center;
         /* all links should fill their containers*/
         width: 100%;
-        line-height: 10em;
+        line-height: 11em;
     }
 
+}
+
+.request {
+    margin: auto;
+    display: block;
+    width: 50%;
+    text-align: center;
 }

@@ -19,13 +19,13 @@
     </div>
     <label>
         Complaint: 
-        <input type="text" formControlName="complaint" placheholder="There is an issue with...">
+        <input class="complaint" type="text" formControlName="complaint" placheholder="There is an issue with...">
     </label>
     <div class="form-error" *ngIf="serviceRequestForm.controls['complaint'].invalid && 
     (serviceRequestForm.controls['complaint'].dirty || serviceRequestForm.controls['complaint'].touched)">
             <p>Please enter a valid complaint.</p>
     </div>
-    <button type="submit" [disabled]="serviceRequestForm.pristine || serviceRequestForm.invalid" >Submit Request</button>
+    <button class="modal-bttn" type="submit" [disabled]="serviceRequestForm.pristine || serviceRequestForm.invalid" >Submit Request</button>
 </form>
 
 

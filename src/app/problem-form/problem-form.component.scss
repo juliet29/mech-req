@@ -27,13 +27,19 @@ h3, h4, p {
 }
 
 button {
-    width: 15rem;
-    background-color: lightblue;
     border-radius: 1%;
-    margin: 1% 41%;
+    background-color: lightblue;
+    margin: 1rem auto;
+    display: block;
+    width: 20%;
+    text-align: center;
     padding: 0.5rem;
 }
 
 button:disabled {
     background-color: lightgrey;
+}
+
+.complaint {
+    height: 5rem;
 }
