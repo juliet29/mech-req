@@ -16,6 +16,7 @@ import { ViewRequestComponent } from './view-request/view-request.component';
 import { RequestService } from 'src/app/services/request.service';
 import { ModalService } from './services/modal.service';
 import { PlantIdService } from 'src/app/services/plant-id.service';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { PlantIdService } from 'src/app/services/plant-id.service';
     ModalComponent,
     ProblemFormComponent,
     ViewRequestComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,

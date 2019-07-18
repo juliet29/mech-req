@@ -1,0 +1,24 @@
+<h1>Log In</h1>
+<form [formGroup]="loginForm" *ngIf="!_UserService.token" (ngSubmit)="onSubmit()">
+    <div>
+        <label>Username: </label>
+        <input type="text" formControlName="username" placeholder="Username">
+    </div>
+
+    <div>
+        <label>Password: </label>
+        <input type="text" formControlName="password" placeholder="Password">
+    </div>
+    <button class="modal-bttn" type="submit">
+        Log In
+    </button>
+</form>
+
+<div *ngIf="_UserService.token">
+    <div>
+        You are logged in as {{ _UserService.username }} <br/>
+        Your login expires in {{ _UserService.token_expires }}
+    </div>
+    <button (click)="refreshToken()" class="modal-bttn" >Refresh Token</button>
+    <button (click)="logout()" class="modal-bttn" >Log Out</button>
+</div>
