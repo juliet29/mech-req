@@ -9,10 +9,6 @@ export class UserService {
   // http options used for making API calls
   private httpOptions: any;
 
-  // the link 
-  private link: string = '/api-token-auth/';
-  private link2: string = '/api-token-refresh/';
-
   // actual JWT token
   public token: string;
 
@@ -31,9 +27,26 @@ export class UserService {
     };
   }
 
+  // register a user
+  public signup(user) {
+    var mytest: any;
+    mytest = this.http.post('http://127.0.0.1:8000/users/', JSON.stringify(user)).subscribe(
+      data  => {
+        console.log("Sign Up Request is successful ", data);
+        },
+      error => {
+        console.log("Error", error);
+      }
+    );
+    console.log("subscription finished")
+    console.log(user);
+    return mytest;
+  }
+
+
   // get auth token from JWT endpoint
   public login(user) {
-    this.http.post(this.link, JSON.stringify(user), this.httpOptions).subscribe(
+    this.http.post('/api-token-auth/', JSON.stringify(user), this.httpOptions).subscribe(
       data => {
         this.updateData(data['token']);
       },
@@ -45,7 +58,7 @@ export class UserService {
 
   // refresh JWT to extend time of user login 
   public refreshToken() {
-    this.http.post(this.link2, JSON.stringify({token: this.token}), this.httpOptions).subscribe(
+    this.http.post('/api-token-refresh/', JSON.stringify({token: this.token}), this.httpOptions).subscribe(
       data => {
         this.updateData(data['token']);
       },

@@ -3,9 +3,6 @@ import { FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms'
 import { RequestService } from 'src/app/services/request.service';
 import { PlantIdService } from 'src/app/services/plant-id.service';
 
-import {throwError, generate} from 'rxjs';
-import { post } from 'selenium-webdriver/http';
-
 
 const months = ["January", "Februaury", "March","April", "May", "June", "July", "August", "September", "October", "November", "December"];
 

@@ -1,18 +1,56 @@
-<h1>Log In</h1>
-<form [formGroup]="loginForm" *ngIf="!_UserService.token" (ngSubmit)="onSubmit()">
-    <div>
-        <label>Username: </label>
-        <input type="text" formControlName="username" placeholder="Username">
+<div  *ngIf="!_UserService.token && !registerNewUser">
+    <h1>Log In</h1>
+    <form [formGroup]="loginForm" (ngSubmit)="onLoginSubmit()">
+        <div>
+            <label>Username: </label>
+            <input type="text" formControlName="username" placeholder="Username">
+        </div>
+        <div>
+            <label>Password: </label>
+            <input type="text" formControlName="password" placeholder="Password">
+        </div>
+        <button class="modal-bttn" type="submit">
+            Log In
+        </button>
+    </form>
+
+    <button (click)="renderSignUp()" class="modal-bttn">
+        New User? Sign Up Here!
+    </button>
+</div>
+
+<!-- register new users -->
+<div *ngIf="registerNewUser">
+        <h1>Sign Up as a New User</h1>
+        <form [formGroup]="signUpForm" (ngSubmit)="onSignupSubmit()">
+        <div>
+            <label>Username: </label>
+            <input type="text" formControlName="username" placeholder="Username">
+        </div>
+        <div>
+            <label>Phone Number: </label>
+            <input type="text" formControlName="phone_number" placeholder="+233 123 456 789">
+        </div>
+        <div>
+            <label>Request Additional Permissions? </label>
+            <input type="checkbox" formControlName="username">
+        </div>
+        <div>
+            <label>Password: </label>
+            <input type="text" formControlName="password" placeholder="Password">
+        </div>
+        <div>
+            <label>Re-enter Password: </label>
+            <input type="text" formControlName="password_check" placeholder="Password Again">
+        </div>
+        <button class="modal-bttn" type="submit">
+            Sign Up
+        </button>
+    </form>
+
+
     </div>
 
-    <div>
-        <label>Password: </label>
-        <input type="text" formControlName="password" placeholder="Password">
-    </div>
-    <button class="modal-bttn" type="submit">
-        Log In
-    </button>
-</form>
 
 <div *ngIf="_UserService.token">
     <div>

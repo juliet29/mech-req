@@ -9,22 +9,26 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class LoginComponent implements OnInit {
 
-  public user: any;
+  public registerNewUser: boolean = false;
 
   constructor(private _UserService: UserService) { }
 
   ngOnInit() {
-    this.user = {
-      username: '',
-      password: ''
-    };
-
   }
 
   loginForm = new FormGroup({
     username: new FormControl('', [Validators.required]),
     password: new FormControl('', [Validators.required])
   });
+
+  signUpForm = new FormGroup({
+    username: new FormControl('', [Validators.required]),
+    phone_number: new FormControl('', [Validators.required]),
+    permissions: new FormControl(false, [Validators.required]),
+    // validators should check that passwords match on the client side
+    password: new FormControl('', [Validators.required]),
+    password_check: new FormControl('', [Validators.required]),
+  })
 
   login() {
     this._UserService.login({
@@ -33,7 +37,7 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  onSubmit(){
+  onLoginSubmit(){
     this.login();
   }
 
@@ -43,6 +47,18 @@ export class LoginComponent implements OnInit {
 
   logout(){
     this._UserService.logout();
+  }
+
+  renderSignUp() {
+    this.registerNewUser = true;
+  }
+
+  onSignupSubmit() {
+    this._UserService.signup({
+      'username': this.signUpForm.get('username').value,
+      'phonenum': this.signUpForm.get('phone_number').value,
+      'password': this.signUpForm.get('password').value,
+    });
   }
 
 }
