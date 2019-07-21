@@ -23,14 +23,16 @@ export class UserService {
 
   constructor(private http: HttpClient) { 
     this.httpOptions = {
-      headers: new HttpHeaders({'Content-Type': 'application/json'})
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      })
     };
   }
 
   // register a user
   public signup(user) {
     var mytest: any;
-    mytest = this.http.post('http://127.0.0.1:8000/users/', JSON.stringify(user)).subscribe(
+    mytest = this.http.post('http://127.0.0.1:8000/mech-app/users/', JSON.stringify(user), this.httpOptions).subscribe(
       data  => {
         console.log("Sign Up Request is successful ", data);
         },
@@ -46,7 +48,7 @@ export class UserService {
 
   // get auth token from JWT endpoint
   public login(user) {
-    this.http.post('/api-token-auth/', JSON.stringify(user), this.httpOptions).subscribe(
+    this.http.post('http://127.0.0.1:8000/mech-app/auth/login/', JSON.stringify(user), this.httpOptions).subscribe(
       data => {
         this.updateData(data['token']);
       },

@@ -56,7 +56,7 @@ export class LoginComponent implements OnInit {
   onSignupSubmit() {
     this._UserService.signup({
       'username': this.signUpForm.get('username').value,
-      'phonenum': this.signUpForm.get('phone_number').value,
+      //'phonenum': this.signUpForm.get('phone_number').value,
       'password': this.signUpForm.get('password').value,
     });
   }
