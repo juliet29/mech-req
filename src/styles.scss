@@ -60,3 +60,8 @@ button:disabled {
     }
 }
 
+.fancy {
+    @include fancy-font;
+    text-align: center;
+}
+

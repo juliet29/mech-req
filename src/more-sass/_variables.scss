@@ -29,7 +29,7 @@ $disabledColor: lightgrey;
 
 }
 
-@mixin cute-button ($background-color: $secondColor, $width: 20%, $color: $white) {
+@mixin cute-button ($background-color: $secondColor, $width: 100%, $color: $white) {
     margin: 1rem auto;
     display: block;
     width: $width;

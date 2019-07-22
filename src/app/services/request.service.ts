@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders, HttpErrorResponse} from '@angular/common/http';
-import { throwError } from 'rxjs';
-import { analyzeAndValidateNgModules } from '@angular/compiler';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+
 
 
 // create http headers
@@ -12,7 +11,7 @@ const httpOptions = {
   })
 };
 
-let api_site = 'http://127.0.0.1:8000/servicerequest'
+let api_site = 'http://127.0.0.1:8000/mech-app/service/'
 
 
 

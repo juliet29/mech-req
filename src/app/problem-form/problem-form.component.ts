@@ -1,7 +1,9 @@
 import { Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import { FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms';
+import { UserService } from 'src/app/services/user.service';
 import { RequestService } from 'src/app/services/request.service';
 import { PlantIdService } from 'src/app/services/plant-id.service';
+
 
 
 const months = ["January", "Februaury", "March","April", "May", "June", "July", "August", "September", "October", "November", "December"];
@@ -13,26 +15,28 @@ const months = ["January", "Februaury", "March","April", "May", "June", "July", 
 })
 export class ProblemFormComponent implements OnInit {
 
-  @Input() currentPlantName: string;
-
-  // object representing the data that will be sent to the API
-  public new_request: any;
+  @Input() currentPlantName: string;  
+  // some vars that get used 
   today: any;
   today_nice: any;
   subscription: any;
   subscription2: any;
-  
+  afterSubmit: boolean
+
+  // object representing the data that will be sent to the API
+  public new_request: any;
 
   // all variables for the new_request are null to begin with
   request_id: any;
-  sender: any;
   time_sent: any;
   plant: any;
   location: string;
+  complaint_title: string;
   complaint: any;
-  afterSubmit: boolean
+  author: any;
+ 
 
-  constructor(private _RequestService: RequestService, 
+  constructor(private _UserService: UserService, private _RequestService: RequestService, 
     private _PlantIdService: PlantIdService) {
       // get info about the current plant and location
       this.subscription = this._PlantIdService.getPlantID().subscribe(
@@ -51,7 +55,7 @@ export class ProblemFormComponent implements OnInit {
   }
 
   serviceRequestForm = new FormGroup({
-    sender: new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(120)]),
+    complaint_title: new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(28)]),
     complaint: new FormControl('', [Validators.required, Validators.minLength(4)])
   })
 
@@ -93,9 +97,10 @@ export class ProblemFormComponent implements OnInit {
   onSubmit(){
     this.request_id = this.IDGenerator()
     this.time_sent = this.today;
-    this.sender = this.serviceRequestForm.get('sender').value;
+    this.complaint_title = this.serviceRequestForm.get('complaint_title').value;
     this.complaint = this.serviceRequestForm.get('complaint').value;
     this.location = this.plant + ' - '+ this.location;
+    this.author = this._UserService.username
     this.afterSubmit = true;
     this.postSubmit();
   }
@@ -105,10 +110,11 @@ export class ProblemFormComponent implements OnInit {
     console.log("submission event!");
     this.new_request = {
       request_id: this.request_id,
-      sender: this.sender,
       time_sent: this.time_sent,
       location: this.location,
-      complaint: this.complaint
+      title: this.complaint_title,
+      complaint: this.complaint,
+      author: this._UserService.id
     };
     this._RequestService.create(this.new_request);
     }

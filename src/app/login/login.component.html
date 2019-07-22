@@ -1,3 +1,8 @@
+
+<div *ngIf="successRegister">
+    <p> Registration successful! Please log in using your credentials. </p>
+</div>
+
 <div  *ngIf="!_UserService.token && !registerNewUser">
     <h1>Log In</h1>
     <form [formGroup]="loginForm" (ngSubmit)="onLoginSubmit()">
@@ -28,10 +33,6 @@
             <input type="text" formControlName="username" placeholder="Username">
         </div>
         <div>
-            <label>Phone Number: </label>
-            <input type="text" formControlName="phone_number" placeholder="+233 123 456 789">
-        </div>
-        <div>
             <label>Request Additional Permissions? </label>
             <input type="checkbox" formControlName="username">
         </div>
@@ -54,9 +55,10 @@
 
 <div *ngIf="_UserService.token">
     <div>
-        You are logged in as {{ _UserService.username }} <br/>
+        You are successfully logged in as {{ _UserService.username }} <br/>
         Your login expires in {{ _UserService.token_expires }}
     </div>
+    <a class="request-link" routerLink="/Profile"> Go to your profile </a>
     <button (click)="refreshToken()" class="modal-bttn" >Refresh Token</button>
     <button (click)="logout()" class="modal-bttn" >Log Out</button>
 </div>

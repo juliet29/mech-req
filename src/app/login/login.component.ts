@@ -10,6 +10,8 @@ import { UserService } from 'src/app/services/user.service';
 export class LoginComponent implements OnInit {
 
   public registerNewUser: boolean = false;
+  public successRegister: boolean = false;
+
 
   constructor(private _UserService: UserService) { }
 
@@ -23,7 +25,6 @@ export class LoginComponent implements OnInit {
 
   signUpForm = new FormGroup({
     username: new FormControl('', [Validators.required]),
-    phone_number: new FormControl('', [Validators.required]),
     permissions: new FormControl(false, [Validators.required]),
     // validators should check that passwords match on the client side
     password: new FormControl('', [Validators.required]),
@@ -35,6 +36,7 @@ export class LoginComponent implements OnInit {
       'username': this.loginForm.get('username').value,
       'password': this.loginForm.get('password').value
     });
+    
   }
 
   onLoginSubmit(){
@@ -56,9 +58,10 @@ export class LoginComponent implements OnInit {
   onSignupSubmit() {
     this._UserService.signup({
       'username': this.signUpForm.get('username').value,
-      //'phonenum': this.signUpForm.get('phone_number').value,
       'password': this.signUpForm.get('password').value,
     });
+    this.successRegister = true;
+    this.registerNewUser = false;
   }
 
 }
