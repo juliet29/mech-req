@@ -9,6 +9,8 @@ import { Observable } from 'rxjs';
 export class AuthGuard implements CanActivate {
   constructor( private _UserService: UserService, private _Router: Router) {}
 
+  login: boolean=false;
+
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): boolean {
@@ -18,14 +20,24 @@ export class AuthGuard implements CanActivate {
   }
 
   checkLogin(url: string): boolean {
-    if (this._UserService.isLoggedIn) { 
+
+    this._UserService.currentToken.subscribe(
+      data => console.log(data),
+      err => console.error(err),
+      () => { 
+        this.login = true,
+        console.log(this.login)
+      }
+
+    )
+    if (this.login) { 
       return true; 
     }
 
     // Store the attempted URL for redirecting
     this._UserService.redirectUrl = url;
 
-    // Navigate to the login page with extras
+    // Navigate to the login page 
     this._Router.navigate(['/login']);
     return false;
   }

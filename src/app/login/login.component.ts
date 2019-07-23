@@ -38,9 +38,13 @@ export class LoginComponent implements OnInit {
       'password': this.loginForm.get('password').value
     });
     // redirect url or regular one when user gets in succesfully
+    
+
     if (this._UserService.isLoggedIn) {
-      let redirect = this._UserService.redirectUrl ? this._Router.parseUrl(this._UserService.redirectUrl) : '/Profile';
+      let redirect = this._UserService.redirectUrl ? this._Router.parseUrl(this._UserService.redirectUrl) : 'http://localhost:4200/Profile';
+
       this._Router.navigateByUrl(redirect); 
+      console.log(redirect)
     }
     
   }
