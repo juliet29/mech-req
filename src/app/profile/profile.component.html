@@ -1,6 +1,26 @@
 <p>User Profile</p>
 <p>User Name</p>
-<p> Your Service Requests</p>
-<a class="request-link" routerLink="/Home">Make a new Service Request Table will go here </a>
+<a class="request-link" routerLink="/Home">Make a new Service Request </a>
 <button (click)="refreshToken()" class="modal-bttn" >Refresh Token</button>
 <button routerLink="/login" (click)="logout()" class="modal-bttn" >Log Out</button>
+
+<p> Your Service Requests</p>
+
+<div class="tb-overflow">
+    <table>
+            <tr>
+                <th>Time </th>
+                <th>Request ID </th>
+                <th>Location </th>
+                <th>Complaint Title</th> 
+                <th>Status</th>
+            </tr>
+            <tr *ngFor="let a_request of u_request">
+                    <td>{{ a_request.time_sent }}</td>
+                    <td>{{ a_request.request_id }}</td>
+                    <td>{{ a_request.location }}</td>
+                    <td>{{ a_request.title }}</td>
+                    <td>{{ a_request.status }}</td>
+            </tr> 
+        </table>
+</div>

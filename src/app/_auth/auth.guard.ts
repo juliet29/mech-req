@@ -21,15 +21,17 @@ export class AuthGuard implements CanActivate {
 
   checkLogin(url: string): boolean {
 
-    // subscribe to the token as evidence of logged in or not
+    // subscribe to the authorization token as evidence of logged in or not
     this._UserService.currentToken.subscribe(
       data => {
-        console.log("hello");
-        this.loggedIn = true,
-        console.log(this.loggedIn)
+        if (data) {
+          this.loggedIn = true,
+          console.log("Auth Guard Passed? " + this.loggedIn)
+          }    
         },
       err => console.error(err),
     )
+
     if (this.loggedIn) { 
       return true; 
     }

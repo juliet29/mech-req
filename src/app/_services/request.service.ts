@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 
 
 
@@ -26,6 +26,12 @@ export class RequestService {
   list() {
     return this.http.get(api_site);
     // should add error handling
+  }
+
+  list_user(author) {
+    // get information about the user and put in local storage
+    let param1 = new HttpParams().set('author', author);
+    return this.http.get('http://127.0.0.1:8000/mech-app/service/', {params: param1});
   }
 
   create(newRequest){

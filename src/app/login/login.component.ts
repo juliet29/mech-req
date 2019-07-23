@@ -43,15 +43,18 @@ export class LoginComponent implements OnInit {
     // subscribe to the token as evidence of logged in or not
     this._UserService.currentToken.subscribe(
       data => {
-        console.log("hello");
-        this.loggedIn = true,
-        console.log(this.loggedIn)
+        if (data) {
+          console.log("hello");
+          this.loggedIn = true,
+          console.log(this.loggedIn)
+          }    
         },
       err => console.error(err),
     )
 
     // redirect url or regular one when user gets in succesfully
     if (this.loggedIn) {
+      console.log("redirecting")
       let redirect = this._UserService.redirectUrl ? this._Router.parseUrl(this._UserService.redirectUrl) : '/Profile';
 
       this._Router.navigateByUrl(redirect); 

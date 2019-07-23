@@ -10,6 +10,7 @@ import { UserData } from '../_models/userData'
 export class NavComponent implements OnInit {
 
   private currentUser;
+  private token_date;
 
 
   constructor(private _UserService: UserService) { }
@@ -19,6 +20,18 @@ export class NavComponent implements OnInit {
       this.currentUser = this._UserService.currentUserValue;
       console.log(this.currentUser);
     }
+
+    console.log(this._UserService.currentTokenValue);
+
+    this._UserService.currentToken.subscribe(
+      data => {
+        if (data) {
+          this.token_date = data.token_expires;
+        }
+        
+        },
+      err => console.error(err),
+    )
     
   }
 
