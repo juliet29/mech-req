@@ -1,7 +1,7 @@
 <nav>
     <p>SSGL Service Requests</p>
 
-    <div *ngIf="_UserService.username">
+    <div *ngIf="_UserService.currentUserValue">
         <p>You are logged in as: {{ _UserService.username }}</p>
         <a routerLink="/Profile"> Profile </a>
         <p>View Service Requests</p>

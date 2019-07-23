@@ -7,10 +7,15 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./nav.component.scss']
 })
 export class NavComponent implements OnInit {
+  private token_present: boolean=false;
 
   constructor(private _UserService: UserService) { }
 
   ngOnInit() {
+    if (this._UserService.currentUserValue) {
+      this.token_present = true;
+      console.log(this.token_present);
+    } 
   }
-
+  
 }

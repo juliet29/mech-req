@@ -11,7 +11,7 @@ export class LoginComponent implements OnInit {
 
   public registerNewUser: boolean = false;
   public successRegister: boolean = false;
-
+  public test: string;
 
   constructor(private _UserService: UserService) { }
 
@@ -41,14 +41,6 @@ export class LoginComponent implements OnInit {
 
   onLoginSubmit(){
     this.login();
-  }
-
-  refreshToken() {
-    this._UserService.refreshToken();
-  }
-
-  logout(){
-    this._UserService.logout();
   }
 
   renderSignUp() {
