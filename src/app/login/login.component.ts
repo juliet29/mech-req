@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators, FormGroup,} from '@angular/forms';
 import { UserService } from 'src/app/_services/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +14,7 @@ export class LoginComponent implements OnInit {
   public successRegister: boolean = false;
   public test: string;
 
-  constructor(private _UserService: UserService) { }
+  constructor(private _UserService: UserService, private _Router: Router) { }
 
   ngOnInit() {
   }
@@ -36,6 +37,11 @@ export class LoginComponent implements OnInit {
       'username': this.loginForm.get('username').value,
       'password': this.loginForm.get('password').value
     });
+    // redirect url or regular one when user gets in succesfully
+    if (this._UserService.isLoggedIn) {
+      let redirect = this._UserService.redirectUrl ? this._Router.parseUrl(this._UserService.redirectUrl) : '/Profile';
+      this._Router.navigateByUrl(redirect); 
+    }
     
   }
 

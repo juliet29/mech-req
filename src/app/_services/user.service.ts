@@ -12,24 +12,24 @@ export class UserService {
   private httpOptions: any;
 
   // actual JWT token
-  public token: string;
+  token: string;
 
   // token expiration date
-  public token_expires: Date;
+  token_expires: Date;
 
   // error messages from login attempt
-  public errors: any=[]; 
+  errors: any=[]; 
  
   // username of logged in user
-  public username: string;
+  username: string;
 
-  // id of logged in user
-  public id: any;
+  // success of login?
+  isLoggedIn: boolean = false;
 
-  public test: string; 
+  // redirect url 
+  redirectUrl: string;
 
-  // users data
-  public userData: UserData[];
+
 
 
   // Subjects that will make user info available 
@@ -86,22 +86,26 @@ export class UserService {
     this.http.post('http://127.0.0.1:8000/mech-app/token/', my_user, this.httpOptions).subscribe(
       data => {
         this.updateData(data['token']); 
+        this.isLoggedIn = true;
       },
       err => console.error(err)
     );
     
-    // get information about the user and put in local storage
-    let param1 = new HttpParams().set('username', my_username);
-    this.http.get('http://127.0.0.1:8000/mech-app/users/', {params: param1}).subscribe(
-      userdata => {
-        let _userdata = userdata[0] as UserData
-        localStorage.setItem('currentUser', JSON.stringify(_userdata)); 
-        console.log(_userdata);
-        this.currentUserSubject.next(_userdata);
-        return _userdata;
-      },
-      err => console.error(err)
+    if (this.isLoggedIn) {
+      // get information about the user and put in local storage
+      let param1 = new HttpParams().set('username', my_username);
+      this.http.get('http://127.0.0.1:8000/mech-app/users/', {params: param1}).subscribe(
+        userdata => {
+          let _userdata = userdata[0] as UserData
+          localStorage.setItem('currentUser', JSON.stringify(_userdata)); 
+          console.log(_userdata);
+          this.currentUserSubject.next(_userdata);
+          return _userdata;
+        },
+        err => console.error(err)
       );
+    }
+    
 
   }
 
@@ -112,6 +116,7 @@ export class UserService {
     this.http.post('http://127.0.0.1:8000/mech-app/token/refresh/', JSON.stringify({token: this.token}), this.httpOptions).subscribe(
       data => {
         this.updateData(data['token']);
+        // need to update the behavior subject and the value in the console 
       },
       err => console.error(err)
     );
@@ -134,13 +139,15 @@ export class UserService {
 
   // private method to updata data 
   private updateData(token) {
-    this.token = token;
+    this.token = token; 
     this.errors = [];
 
     // decode token to read username and expiration timestamp
     const token_parts = this.token.split(/\./);
     const token_decoded = JSON.parse(window.atob(token_parts[1]));
-    this.token_expires = new Date(token_decoded.exp * 1000);
+    this.token_expires = new Date(token_decoded.exp * 1000); 
+    // store this value in a behavior subject 
+    // store this, and the token_expires in html or something to persist on refresh
     this.username = token_decoded.username;
 
   }

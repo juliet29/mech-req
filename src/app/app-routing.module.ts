@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AuthGuard } from 'src/app/_auth/auth.guard';
 
 import { HomeComponent } from './home/home.component';
 import { MudorComponent } from './mudor/mudor.component';
@@ -11,12 +12,13 @@ import { LandingComponent } from './landing/landing.component'
 
 const routes: Routes = [
   { path: '', component: LandingComponent },
-  { path: 'Home', component: HomeComponent },
-  { path: 'Mudor', component: MudorComponent },
-  { path: 'Lavender Hill', component: LavHillComponent },
-  { path: 'ViewRequest', component: ViewRequestComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'Profile', component: ProfileComponent },
+  { path: 'Profile', component: ProfileComponent, canActivate: [AuthGuard] },
+  { path: 'Home', component: HomeComponent, canActivate: [AuthGuard] },
+  { path: 'Mudor', component: MudorComponent, canActivate: [AuthGuard] },
+  { path: 'Lavender Hill', component: LavHillComponent, canActivate: [AuthGuard] },
+  { path: 'ViewRequest', component: ViewRequestComponent, canActivate: [AuthGuard] },
+
 
 ];
 

@@ -114,7 +114,7 @@ export class ProblemFormComponent implements OnInit {
       location: this.location,
       title: this.complaint_title,
       complaint: this.complaint,
-      author: this._UserService.id
+      author: this._UserService.currentUserValue.id
     };
     this._RequestService.create(this.new_request);
     }
