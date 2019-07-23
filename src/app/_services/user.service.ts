@@ -96,6 +96,7 @@ export class UserService {
       userdata => {
         let _userdata = userdata[0] as UserData
         localStorage.setItem('currentUser', JSON.stringify(_userdata)); 
+        console.log(_userdata);
         this.currentUserSubject.next(_userdata);
         return _userdata;
       },
