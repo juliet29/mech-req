@@ -1,6 +1,6 @@
 import { Component, OnInit, ElementRef, Input, OnDestroy, AfterContentInit } from '@angular/core';
-import { ModalService } from 'src/app/services/modal.service';
-import { PlantIdService } from 'src/app/services/plant-id.service';
+import { ModalService } from 'src/app/_services/modal.service';
+import { PlantIdService } from 'src/app/_services/plant-id.service';
 
 
 @Component({

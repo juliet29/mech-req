@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from 'src/app/services/user.service';
+import { UserService } from 'src/app/_services/user.service';
+import { UserData } from '../_models/userData'
 
 @Component({
   selector: 'app-nav',
@@ -7,15 +8,15 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./nav.component.scss']
 })
 export class NavComponent implements OnInit {
-  private token_present: boolean=false;
+
+  private currentUser;
+
 
   constructor(private _UserService: UserService) { }
 
-  ngOnInit() {
-    if (this._UserService.currentUserValue) {
-      this.token_present = true;
-      console.log(this.token_present);
-    } 
+  ngOnInit() { 
   }
+
+  
   
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { PLANTS } from '../plantInfo';
-import { PlantIdService } from 'src/app/services/plant-id.service';
+import { PLANTS } from '../_models/plantInfo';
+import { PlantIdService } from 'src/app/_services/plant-id.service';
 
 var currentPlant =  '';
 export default currentPlant;

@@ -15,12 +15,12 @@ import { ViewRequestComponent } from './view-request/view-request.component';
 import { LoginComponent } from './login/login.component';
 import { NavComponent } from './nav/nav.component';
 // services
-import { RequestService } from 'src/app/services/request.service';
-import { ModalService } from './services/modal.service';
-import { PlantIdService } from 'src/app/services/plant-id.service';
-import { UserService } from 'src/app/services/user.service';
+import { RequestService } from 'src/app/_services/request.service';
+import { ModalService } from './_services/modal.service';
+import { PlantIdService } from 'src/app/_services/plant-id.service';
+import { UserService } from 'src/app/_services/user.service';
 import { ProfileComponent } from './profile/profile.component';
-import { LandingComponent } from './landing/landing.component'
+import { LandingComponent } from './landing/landing.component';
 
 
 

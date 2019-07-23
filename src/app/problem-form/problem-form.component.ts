@@ -1,8 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import { FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms';
-import { UserService } from 'src/app/services/user.service';
-import { RequestService } from 'src/app/services/request.service';
-import { PlantIdService } from 'src/app/services/plant-id.service';
+import { UserService } from 'src/app/_services/user.service';
+import { RequestService } from 'src/app/_services/request.service';
+import { PlantIdService } from 'src/app/_services/plant-id.service';
 
 
 

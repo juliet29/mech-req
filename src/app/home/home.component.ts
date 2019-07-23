@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PLANTS } from '../plantInfo';
+import { PLANTS } from '../_models/plantInfo';
 
 
 @Component({

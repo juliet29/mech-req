@@ -2,7 +2,7 @@
     <p>SSGL Service Requests</p>
 
     <div *ngIf="_UserService.currentUserValue">
-        <p>You are logged in as: {{ _UserService.username }}</p>
+        <p>You are logged in as: {{ _UserService.currentUserValue.username }}</p>
         <a routerLink="/Profile"> Profile </a>
         <p>View Service Requests</p>
         <p>Your Session will expire at {{ _UserService.token_expires }} </p>
