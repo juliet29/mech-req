@@ -132,6 +132,8 @@ export class UserService {
     // remove user from local storage to log user out
     localStorage.removeItem('currentUser');
     this.currentUserSubject.next(null);
+
+    this.isLoggedIn = false;
   }
 
 
@@ -151,6 +153,10 @@ export class UserService {
     const token_decoded = JSON.parse(window.atob(token_parts[1]));
     this.token_expires = new Date(token_decoded.exp * 1000); 
     this.username = token_decoded.username;
+
+    if (this.token || this.currentTokenValue) {
+      this.isLoggedIn = true;
+    }
 
     if (this.token && my_username) {
       console.log("got that token!");

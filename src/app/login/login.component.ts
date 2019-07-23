@@ -14,6 +14,8 @@ export class LoginComponent implements OnInit {
   public successRegister: boolean = false;
   public test: string;
 
+  loggedIn: boolean=false;
+
   constructor(private _UserService: UserService, private _Router: Router) { }
 
   ngOnInit() {
@@ -37,11 +39,20 @@ export class LoginComponent implements OnInit {
       'username': this.loginForm.get('username').value,
       'password': this.loginForm.get('password').value
     });
-    // redirect url or regular one when user gets in succesfully
-    
 
-    if (this._UserService.isLoggedIn) {
-      let redirect = this._UserService.redirectUrl ? this._Router.parseUrl(this._UserService.redirectUrl) : 'http://localhost:4200/Profile';
+    // subscribe to the token as evidence of logged in or not
+    this._UserService.currentToken.subscribe(
+      data => {
+        console.log("hello");
+        this.loggedIn = true,
+        console.log(this.loggedIn)
+        },
+      err => console.error(err),
+    )
+
+    // redirect url or regular one when user gets in succesfully
+    if (this.loggedIn) {
+      let redirect = this._UserService.redirectUrl ? this._Router.parseUrl(this._UserService.redirectUrl) : '/Profile';
 
       this._Router.navigateByUrl(redirect); 
       console.log(redirect)

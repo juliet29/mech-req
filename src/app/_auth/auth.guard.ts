@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 export class AuthGuard implements CanActivate {
   constructor( private _UserService: UserService, private _Router: Router) {}
 
-  login: boolean=false;
+  loggedIn: boolean=false;
 
   canActivate(
     next: ActivatedRouteSnapshot,
@@ -21,16 +21,16 @@ export class AuthGuard implements CanActivate {
 
   checkLogin(url: string): boolean {
 
+    // subscribe to the token as evidence of logged in or not
     this._UserService.currentToken.subscribe(
-      data => console.log(data),
+      data => {
+        console.log("hello");
+        this.loggedIn = true,
+        console.log(this.loggedIn)
+        },
       err => console.error(err),
-      () => { 
-        this.login = true,
-        console.log(this.login)
-      }
-
     )
-    if (this.login) { 
+    if (this.loggedIn) { 
       return true; 
     }
 
