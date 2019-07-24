@@ -1,11 +1,29 @@
 <nav>
-    <p>SSGL Service Requests</p>
+    <h4 class="nav-header">SSGL Service Requests</h4>
 
-    <div *ngIf="_UserService.currentUserValue">
-        <p>You are logged in as: {{ _UserService.currentUserValue.username }}</p>
-        <a routerLink="/Profile"> Profile </a>
-        <p>View Service Requests</p>
-        <p>Your Session will expire at {{ this.token_date }} </p>
+    <div class="nav-body">
+        <div *ngIf="_UserService.currentUserValue">
+            <div class="user-info">
+                    <p>You are logged in as</p>
+                    <h4>{{ _UserService.currentUserValue.username }}</h4>
+                    <p> Status: Admin</p>
+                    <p>Your session will expire in 30:00 </p>
+            </div>
+            <a routerLink="/Profile"> View Your Requests</a> 
+            <br>
+            <a routerLink="/Home">Make A Request</a>
+        </div>
+    
+        <div *ngIf="!_UserService.currentUserValue">
+                <a routerLink="/login"> Log In </a>
+        </div>
+    </div>
+
+    <div class="nav-footer">
+        <p>Serwerage Systems Ghana Ltd</p>
+        <p>clean environment. <br>
+        green energy.</p>
+        <a routerLink="/">Learn More About SSGL</a>
     </div>
 </nav>
 
