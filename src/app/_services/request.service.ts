@@ -3,11 +3,11 @@ import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 
 
 
+
 // create http headers
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type':  'application/json',
-    'Authorization': 'my-auth-token'
   })
 };
 
@@ -22,6 +22,8 @@ export class RequestService {
 
   constructor(private http: HttpClient) { }
 
+  private apiURL = 'http://127.0.0.1:8000/mech-app/';
+
   // use http.get() to load data from API endpoint
   list() {
     return this.http.get(api_site);
@@ -33,6 +35,13 @@ export class RequestService {
     let param1 = new HttpParams().set('author', author);
     return this.http.get('http://127.0.0.1:8000/mech-app/service/', {params: param1});
   }
+
+  list_request(id) {
+    // get information about the user and put in local storage
+    let param1 = new HttpParams().set('request_id', id);
+    return this.http.get('http://127.0.0.1:8000/mech-app/service/', {params: param1});
+  }
+
 
   create(newRequest){
     var mytest: any;
@@ -47,6 +56,10 @@ export class RequestService {
 
     console.log(mytest);
     return mytest;
+  }
+
+  edit(id, request) {
+    return this.http.put(this.apiURL + 'edit-service/' + id, request, httpOptions);
   }
 
   

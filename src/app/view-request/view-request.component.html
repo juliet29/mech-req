@@ -3,22 +3,24 @@
 <div class="tb-overflow">
         <table>
                 <tr>
-                    <th>Date </th>
-                    <th>Time </th>
-                    <th>Request ID </th>
-                    <th>Location </th>
-                    <th>Sender </th>
-                    <th>Complaint </th> 
+                        <th>Date </th>
+                        <th>Time </th>
+                        <th>Request ID </th>
+                        <th>Location </th>
+                        <th>Author</th>
+                        <th>Complaint </th> 
+                        <th>Mark as Complete?</th>
                 </tr>
                 <tr *ngFor="let a_request of request">
                         <td>{{ a_request.date_sent }}</td>
                         <td>{{ a_request.time_sent }}</td>
                         <td>{{ a_request.request_id }}</td>
                         <td>{{ a_request.location }}</td>
-                        <td>{{ a_request.sender }}</td>
+                        <td>{{ a_request.author }}</td>
                         <td>{{ a_request.complaint }}</td>
+                        <td><button (click)=completeRequest(a_request.request_id)>Mark as Complete</button></td>
                 </tr> 
-            </table>
+        </table>
 </div>
 
 
