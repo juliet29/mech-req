@@ -1,0 +1,42 @@
+@import "src/more-sass/_variables.scss";
+.profile-body {
+  @include container;
+  height: auto;
+  background-color: $white;
+}
+
+$userInfoHeight: 21vh;
+.user-info {
+  padding: 0 $displayPadding;
+  padding: 0 2rem;
+  font-size: 0.7rem;
+  position: fixed;
+  background-color: $white;
+  width: 100vw;
+  height: $userInfoHeight;
+}
+.action-link,
+.regular-link {
+  @include cute-link;
+  width: fit-content;
+}
+
+.username {
+  font-family: $cursiveFont;
+  font-size: 2rem;
+}
+
+.after-username {
+  margin-left: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.user-requests {
+  max-width: 100vw;
+  height: 100vh;
+  padding-top: calc(#{$userInfoHeight} + #{$navHeaderHeight});
+}
+
+.user-requests-data {
+  background-color: $accentColor;
+}

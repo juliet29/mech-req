@@ -15,8 +15,8 @@ $white: white;
 $textShadow: 1px 1px 2px rgba(43, 41, 41, 0.212);
 $boxShadow: 0px 1px 2px rgba(43, 41, 41, 0.212);
 $boxShadowSpecial: 0px 1px 2px rgba(160, 111, 111, 0.212);
-
 $displayPadding: 2rem;
+$cursiveFont: "Petit Formal Script", cursive;
 
 // variables about the nav
 $navWidth: 80vw;
@@ -60,6 +60,8 @@ $navHeaderHeight: calc(#{$logoHeight} + 2 *#{$headerMargin});
   padding-top: $navHeaderHeight;
   display: flex;
   flex-direction: column;
+  height: 100vh;
+  width: 100vw;
 }
 
 // *************** responsiveness ******************* //

@@ -2,7 +2,6 @@
 @import "src/app/nav/nav.component.scss";
 
 .landing-body {
-  height: 100vh;
   @include container;
 }
 
@@ -31,7 +30,7 @@
     position: absolute;
     left: 4.5rem;
     margin-top: -6.3rem;
-    font-family: "Petit Formal Script", cursive;
+    font-family: $cursiveFont;
   }
 
   .accent-bottom {
