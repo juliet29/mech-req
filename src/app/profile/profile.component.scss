@@ -3,13 +3,14 @@
   @include container;
   height: auto;
   background-color: $white;
+  font-size: 0.7rem;
 }
 
 $userInfoHeight: 21vh;
 .user-info {
-  padding: 0 $displayPadding;
+  //padding: 0 $displayPadding;
   padding: 0 2rem;
-  font-size: 0.7rem;
+  //font-size: 0.7rem;
   position: fixed;
   background-color: $white;
   width: 100vw;
@@ -39,4 +40,32 @@ $userInfoHeight: 21vh;
 
 .user-requests-data {
   background-color: $accentColor;
+  ul {
+    padding: 0;
+  }
+}
+
+.display-always {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  border-bottom: 3px solid yellowgreen;
+  align-items: center;
+}
+
+.complaint-title {
+  font-size: 1rem;
+}
+
+.toggle-dropdown {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  border: 10px solid yellowgreen;
+}
+
+.display-sometimes {
+  //display: none;
+  background-color: blueviolet;
+  padding: 2rem 2rem;
 }

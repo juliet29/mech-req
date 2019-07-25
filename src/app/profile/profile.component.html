@@ -24,7 +24,19 @@
     <div class="user-requests-data">
       <ul>
         <li *ngFor="let req of u_request">
-          some interesting data :)
+          <div class="display-always">
+            <div class="text">
+              <div class="complaint-title">Complaint Title</div>
+              <div>MUDOR - DRYING BEDS</div>
+              <div>JULY 18, 2019 - 8:30 AM</div>
+              <div>STATUS: PENDING</div>
+            </div>
+            <div class="toggle-dropdown"></div>
+          </div>
+          <div class="display-sometimes">
+            Here is a body of text that might perhaps represent a complaint that
+            a person at the plant might so happen to have.
+          </div>
         </li>
       </ul>
     </div>
