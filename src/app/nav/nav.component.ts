@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/_services/user.service';
-import { UserData } from '../_models/userData'
+import {HostListener} from '@angular/core';
+
+
 
 @Component({
   selector: 'app-nav',
@@ -8,32 +10,56 @@ import { UserData } from '../_models/userData'
   styleUrls: ['./nav.component.scss']
 })
 export class NavComponent implements OnInit {
-
+  
   private currentUser;
   private token_date;
+  showNav: boolean = false;
 
 
-  constructor(private _UserService: UserService) { }
+  constructor(private _UserService: UserService) { 
+  }
   
   ngOnInit() {
+    // get information about the user
     if (this._UserService.currentUserValue) {
       this.currentUser = this._UserService.currentUserValue;
-      console.log(this.currentUser);
-    }
+    } 
 
-    console.log(this._UserService.currentTokenValue);
-
+    // get information about the token
     this._UserService.currentToken.subscribe(
       data => {
         if (data) {
           this.token_date = data.token_expires;
-        }
-        
-        },
+        } 
+      },
       err => console.error(err),
     )
+
+    // toggle the menu when anywhere that is not the menu is cliccked 
     
   }
+
+  // open the nav on button click 
+  toggle_nav() {
+    this.showNav = true;
+    console.log("showNav");   
+  }
+
+  // close the nav when anywhere on the document is clicked
+  @HostListener('document:click', ['$event'])
+  onClick() {
+    console.log("click!"); 
+    let target = event.target as HTMLElement;
+    let classes = target.classList;
+    console.log(classes)
+    if (classes.contains("nav-button") == false) {
+      this.showNav = false;    
+      console.log(" dont showNav"); 
+    }
+    
+  }
+
+
 
   
   

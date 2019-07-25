@@ -1,9 +1,27 @@
-<nav>
+
+    <button *ngIf="!showNav" (click)="toggle_nav()" class="nav-button" class="toggle-button">
+        <span class="nav-button">
+           MENU
+        </span>
+    </button>
+
+    <a routerLink="/" class="logo" >
+        <span>
+            Logo 
+        </span>
+    </a>
+
+
+
+<nav
+[ngClass]="{
+'nav-show': showNav
+}">
     <h4 class="nav-header">SSGL Service Requests</h4>
 
     <div class="nav-body">
         <div *ngIf="_UserService.currentUserValue">
-            <div class="user-info">
+                <div class="user-info">
                     <p>You are logged in as</p>
                     <h4>{{ _UserService.currentUserValue.username }}</h4>
                     <p> Status: Admin</p>
@@ -13,11 +31,14 @@
             <br>
             <a routerLink="/Home">Make A Request</a>
         </div>
-    
+
         <div *ngIf="!_UserService.currentUserValue">
                 <a routerLink="/login"> Log In </a>
         </div>
+
     </div>
+
+    
 
     <div class="nav-footer">
         <p>Serwerage Systems Ghana Ltd</p>

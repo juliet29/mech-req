@@ -1,23 +1,31 @@
 @import 'src/more-sass/_variables.scss';
 //@import "../node_modules/rfs/scss";
 
+$navWidth: 80vw;
+$headerMargin: 0.7rem;
+$logoHeight: 35px;
+
+
 nav {
-    background-color: darkblue;
+    background-color: $darkColor;
     color: white;
     font-size: 0.8rem;
     padding: 3rem 1rem;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 100vh;
-    width: 80vw;
     box-sizing: border-box;
+    height: 100vh;
+    width: $navWidth;
+    z-index: $highZ;
+    margin-left: -$navWidth;
+    position: fixed;
+    
 
     a:hover {
-        color: $primaryColor_hover;
+        color: $primaryColorHover;
     }
 }
-
 
 .user-info {
     margin: 0.3rem 0;
@@ -30,3 +38,34 @@ nav {
         font-size: 0.5rem;
     }
 }
+
+.toggle-button {
+    position: fixed;
+    padding: $headerMargin;
+    z-index: $highZ + 1000;
+    width: min-content;
+    height: min-content;
+}
+.toggle-button:focus {
+    color: $darkColor;
+   }
+
+.nav-show {
+    margin-left: 0;
+    box-shadow: 4px 2px 15px 1px #B9ADAD;
+}
+
+.logo {
+    position: fixed;
+    margin: $headerMargin;
+    right: 0;
+    width: 35px;
+    height: $logoHeight;
+    z-index: $highZ + 1000;
+    background-color: green;
+    align-content: center;
+}
+
+
+
+  

@@ -1,11 +1,18 @@
 // @import 'src/more-sass/_variables.scss';
 
-// variables
+// coooolors
 $primaryColor: lightblue;
-$primaryColor_hover: adjust-color($primaryColor, $lightness: -20);
+$primaryColorHover: adjust-color($primaryColor, $lightness: -20);
 $secondColor:  rgb(60, 146, 175);
-$white: white;
+$darkColor: rgb(14, 10, 90);
+$accentColor: rgb(64, 174, 27);
 $disabledColor: lightgrey;
+$white: white;
+
+
+// other vars
+$highZ: 3000;
+$navHeaderHeight: calc($logoHeight + 2*$headerMargin);
 
 // mixins
 @mixin fancy-font {
