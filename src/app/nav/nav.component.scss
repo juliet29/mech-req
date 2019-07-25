@@ -13,7 +13,7 @@ nav {
   height: 100vh;
   width: $navWidth;
   z-index: $navZ;
-  margin-left: -$navWidth;
+  margin-left: -$navWidth * 2;
   position: fixed;
 
   a:hover {
@@ -51,7 +51,7 @@ nav {
 
 .nav-show {
   margin-left: 0;
-  box-shadow: 4px 2px 15px 1px #b9adad;
+  box-shadow: 4px 2px 15px 1px #413a3a2c;
 }
 
 .logo {
@@ -62,5 +62,6 @@ nav {
   height: $logoHeight;
   z-index: $navZ + 1000;
   background-color: $accentColorDark;
+  border: 1px solid red;
   align-content: center;
 }

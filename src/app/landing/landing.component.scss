@@ -2,10 +2,8 @@
 @import "src/app/nav/nav.component.scss";
 
 .landing-body {
-  padding-top: $navHeaderHeight;
   height: 100vh;
-  display: flex;
-  flex-direction: column;
+  @include container;
 }
 
 .top {
@@ -47,15 +45,12 @@
   }
 
   .enter-link {
-    color: $white;
-    background-color: lightblue;
-    padding: 0.8rem;
+    @include cute-button();
+    font-size: 1.5rem;
     position: absolute;
     margin-top: 1.5rem;
     right: 2rem;
     font-size: 1.5rem;
-    box-shadow: $boxShadow;
-    text-shadow: none;
   }
 }
 

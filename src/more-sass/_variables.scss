@@ -5,6 +5,7 @@ $primaryColor: lightblue;
 $primaryColorHover: adjust-color($primaryColor, $lightness: -20);
 $secondColor: rgb(60, 146, 175);
 $darkColor: rgb(14, 10, 90);
+$darkColorHover: adjust-color($darkColor, $lightness: 10);
 $accentColor: green;
 $accentColorDark: adjust-color($accentColor, $lightness: -10);
 $disabledColor: lightgrey;
@@ -12,7 +13,9 @@ $white: white;
 
 // element cuteness
 $textShadow: 1px 1px 2px rgba(43, 41, 41, 0.212);
-$boxShadow: 3px 1px 3px rgba(43, 41, 41, 0.212);
+$boxShadow: 0px 1px 2px rgba(43, 41, 41, 0.212);
+$boxShadowSpecial: 0px 1px 2px rgba(160, 111, 111, 0.212);
+
 $displayPadding: 2rem;
 
 // variables about the nav
@@ -24,46 +27,39 @@ $navHeaderHeight: calc(#{$logoHeight} + 2 *#{$headerMargin});
 
 // mixins
 @mixin fancy-font {
-  text-shadow: 1px 1px 3px #aaa;
-  font-weight: 100;
+  text-shadow: $textShadow;
+  font-weight: 300;
 }
 
 @mixin cute-link(
   $background-color: transparent,
   $width: 50%,
-  $color: $secondColor
+  $color: $darkColor
 ) {
-  @include fancy-font;
-  margin: 2rem auto;
-  display: block;
-  width: $width;
-  text-align: center;
+  font-weight: 300;
   background-color: $background-color;
-  border-radius: 1%;
   color: $color;
-
   &:hover {
-    color: $color + 50;
+    border-bottom: 1px $color;
+    $color: $darkColorHover;
   }
 }
 
-@mixin cute-button(
-  $background-color: $secondColor,
-  $width: 100%,
-  $color: $white
-) {
-  margin: 1rem auto;
-  display: block;
-  width: $width;
-  text-align: center;
-  background-color: $background-color;
-  border-radius: 3%;
+@mixin cute-button($background-color: $primaryColor, $color: $white) {
   color: $color;
-  padding: 0.5rem;
-
+  background-color: $background-color;
+  padding: 0.8rem;
+  box-shadow: $boxShadow;
+  text-shadow: none;
   &:hover {
-    background-color: $background-color + 50;
+    background-color: adjust-color($background-color, $lightness: -20);
   }
+}
+
+@mixin container {
+  padding-top: $navHeaderHeight;
+  display: flex;
+  flex-direction: column;
 }
 
 // *************** responsiveness ******************* //
