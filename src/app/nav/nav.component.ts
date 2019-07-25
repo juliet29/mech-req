@@ -41,20 +41,16 @@ export class NavComponent implements OnInit {
 
   // open the nav on button click 
   toggle_nav() {
-    this.showNav = true;
-    console.log("showNav");   
+    this.showNav = true; 
   }
 
   // close the nav when anywhere on the document is clicked
   @HostListener('document:click', ['$event'])
   onClick() {
-    console.log("click!"); 
     let target = event.target as HTMLElement;
     let classes = target.classList;
-    console.log(classes)
     if (classes.contains("nav-button") == false) {
       this.showNav = false;    
-      console.log(" dont showNav"); 
     }
     
   }

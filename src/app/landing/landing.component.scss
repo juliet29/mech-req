@@ -1,0 +1,71 @@
+@import "src/more-sass/_variables.scss";
+@import "src/app/nav/nav.component.scss";
+
+.landing-body {
+  padding-top: $navHeaderHeight;
+
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.top {
+  flex-grow: 9;
+  padding: 0 $displayPadding;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: $white;
+
+  span {
+    font-size: 3rem;
+  }
+
+  .ssgl-group {
+    margin-top: 0.3rem;
+  }
+  .ssgl {
+    font-size: 2.5rem;
+    line-height: 3rem;
+  }
+
+  .accent-top {
+    position: absolute;
+    left: 4.5rem;
+    margin-top: -6.3rem;
+    font-family: "Petit Formal Script", cursive;
+  }
+
+  .accent-bottom {
+    font-weight: 100;
+    font-size: 0.8rem;
+
+    span {
+      color: $accentColor;
+      font-size: 0.8rem;
+    }
+  }
+
+  .enter-link {
+    color: $white;
+    background-color: lightblue;
+    padding: 0.8rem;
+    position: absolute;
+    margin-top: 1.5rem;
+    right: 2rem;
+    font-size: 1.5rem;
+    box-shadow: $boxShadow;
+  }
+}
+
+.bottom {
+  flex-grow: 1;
+  padding: 1rem 2rem;
+  background-color: $accentColorDark;
+  color: white;
+  font-size: 0.8rem;
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}

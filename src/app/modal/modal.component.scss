@@ -1,3 +1,6 @@
+@import 'src/more-sass/_variables.scss';
+
+$modalZ: $navZ - 100;
 /* MODAL STYLES 
 -------------------------------*/
 .modal {
@@ -14,7 +17,7 @@
     left: 0;
 
     /* z-index must be higher than .jw-modal-background */
-    z-index: 1000;
+    z-index: $modalZ;
 
     /* enables scrolling for tall modals */
     overflow: auto;
@@ -41,7 +44,7 @@
     opacity: 0.75;
     
     /* z-index must be below .jw-modal and above everything else  */
-    z-index: 900;
+    z-index: $modalZ - 100 ;
 }
 
 .modal, .modal-background {

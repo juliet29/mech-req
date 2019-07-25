@@ -1,71 +1,66 @@
-@import 'src/more-sass/_variables.scss';
+@import "src/more-sass/_variables.scss";
 //@import "../node_modules/rfs/scss";
 
-$navWidth: 80vw;
-$headerMargin: 0.7rem;
-$logoHeight: 35px;
-
-
 nav {
-    background-color: $darkColor;
-    color: white;
-    font-size: 0.8rem;
-    padding: 3rem 1rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    box-sizing: border-box;
-    height: 100vh;
-    width: $navWidth;
-    z-index: $highZ;
-    margin-left: -$navWidth;
-    position: fixed;
-    
+  background-color: $darkColor;
+  color: white;
+  font-size: 0.8rem;
+  padding: 3rem 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-sizing: border-box;
+  height: 100vh;
+  width: $navWidth;
+  z-index: $navZ;
+  margin-left: -$navWidth;
+  position: fixed;
 
-    a:hover {
-        color: $primaryColorHover;
-    }
+  a:hover {
+    color: $primaryColorHover;
+  }
 }
 
 .user-info {
-    margin: 0.3rem 0;
+  margin: 0.3rem 0;
 
-    p, h4 {
-        margin: 0.3rem 0;
-    }
-    
-    p { 
-        font-size: 0.5rem;
-    }
+  p,
+  h4 {
+    margin: 0.3rem 0;
+  }
+
+  p {
+    font-size: 0.5rem;
+  }
 }
 
 .toggle-button {
-    position: fixed;
-    padding: $headerMargin;
-    z-index: $highZ + 1000;
-    width: min-content;
-    height: min-content;
+  position: fixed;
+  padding: $headerMargin;
+  z-index: $navZ + 1000;
+  width: min-content;
+  height: min-content;
+
+  span {
+    @include fancy-font;
+  }
 }
 .toggle-button:focus {
-    color: $darkColor;
-   }
+  color: $darkColor;
+}
 
 .nav-show {
-    margin-left: 0;
-    box-shadow: 4px 2px 15px 1px #B9ADAD;
+  margin-left: 0;
+  box-shadow: 4px 2px 15px 1px #b9adad;
 }
 
 .logo {
-    position: fixed;
-    margin: $headerMargin;
-    right: 0;
-    width: 35px;
-    height: $logoHeight;
-    z-index: $highZ + 1000;
-    background-color: green;
-    align-content: center;
+  position: fixed;
+  margin: $headerMargin;
+  right: 0;
+  width: 35px;
+  height: $logoHeight;
+  z-index: $navZ + 1000;
+  background-color: $accentColorDark;
+  align-content: center;
 }
-
-
-
-  

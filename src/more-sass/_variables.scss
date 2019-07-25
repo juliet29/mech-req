@@ -1,57 +1,70 @@
-// @import 'src/more-sass/_variables.scss';
+// @import 'src/more-sass/_variables.scss'; --> copy this link  to other files
 
 // coooolors
 $primaryColor: lightblue;
 $primaryColorHover: adjust-color($primaryColor, $lightness: -20);
-$secondColor:  rgb(60, 146, 175);
+$secondColor: rgb(60, 146, 175);
 $darkColor: rgb(14, 10, 90);
-$accentColor: rgb(64, 174, 27);
+$accentColor: green;
+$accentColorDark: adjust-color($accentColor, $lightness: -10);
 $disabledColor: lightgrey;
 $white: white;
 
+// element cuteness
+$textShadow: 1px 1px 3px #aaa;
+$boxShadow: 3px 1px 3px rgba(43, 41, 41, 0.212);
+$displayPadding: 2rem;
 
-// other vars
-$highZ: 3000;
-$navHeaderHeight: calc($logoHeight + 2*$headerMargin);
+// variables about the nav
+$navWidth: 80vw;
+$logoHeight: 35px;
+$navZ: 3000; // this is the z-index of the nav body
+$headerMargin: 0.7rem;
+$navHeaderHeight: calc(#{$logoHeight} + 2 *#{$headerMargin});
 
 // mixins
 @mixin fancy-font {
-    font-style: italic;
-    font-weight: bold;
+  text-shadow: 1px 1px 3px #aaa;
+  font-weight: 100;
 }
 
-@mixin cute-link($background-color: transparent, $width: 50%, $color: $secondColor) {
-    @include fancy-font;
-    margin: 2rem auto;
-    display: block;
-    width: $width;
-    text-align: center;
-    background-color: $background-color;
-    border-radius: 1%;
-    color: $color;
+@mixin cute-link(
+  $background-color: transparent,
+  $width: 50%,
+  $color: $secondColor
+) {
+  @include fancy-font;
+  margin: 2rem auto;
+  display: block;
+  width: $width;
+  text-align: center;
+  background-color: $background-color;
+  border-radius: 1%;
+  color: $color;
 
-    &:hover {
-        color: $color + 50;
-    }
-
-
+  &:hover {
+    color: $color + 50;
+  }
 }
 
-@mixin cute-button ($background-color: $secondColor, $width: 100%, $color: $white) {
-    margin: 1rem auto;
-    display: block;
-    width: $width;
-    text-align: center;
-    background-color: $background-color;
-    border-radius: 3%;
-    color: $color;
-    padding: 0.5rem;
+@mixin cute-button(
+  $background-color: $secondColor,
+  $width: 100%,
+  $color: $white
+) {
+  margin: 1rem auto;
+  display: block;
+  width: $width;
+  text-align: center;
+  background-color: $background-color;
+  border-radius: 3%;
+  color: $color;
+  padding: 0.5rem;
 
-    &:hover {
-        background-color: $background-color + 50;
-    }
+  &:hover {
+    background-color: $background-color + 50;
+  }
 }
-
 
 // *************** responsiveness ******************* //
 
@@ -68,7 +81,7 @@ $screen-lg-min: 992px;
 $screen-xl-min: 1200px;
 
 @mixin sm {
-    @media (max-width: #{$screen-sm-min} ) {
-        @content;
-    }
+  @media (max-width: #{$screen-sm-min} ) {
+    @content;
+  }
 }
