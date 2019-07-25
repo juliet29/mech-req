@@ -40,8 +40,8 @@ $navHeaderHeight: calc(#{$logoHeight} + 2 *#{$headerMargin});
   background-color: $background-color;
   color: $color;
   &:hover {
-    border-bottom: 1px $color;
-    $color: $darkColorHover;
+    text-decoration: underline $darkColorHover solid;
+    color: $darkColorHover;
   }
 }
 
@@ -52,7 +52,7 @@ $navHeaderHeight: calc(#{$logoHeight} + 2 *#{$headerMargin});
   box-shadow: $boxShadow;
   text-shadow: none;
   &:hover {
-    background-color: adjust-color($background-color, $lightness: -20);
+    background-color: $darkColorHover;
   }
 }
 
