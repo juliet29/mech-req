@@ -1,5 +1,11 @@
 <div class="login-body">
   <div *ngIf="!_UserService.token && !registerNewUser" class="display-group">
+    <div class="success-message" *ngIf="successRegister">
+      <p>
+        REGISTRATION SUCCESFUL
+        <span>PLEASE LOG IN <br />USING YOUR <br />CREDENTIALS</span>
+      </p>
+    </div>
     <form [formGroup]="loginForm" (ngSubmit)="onLoginSubmit()">
       <div class="field">
         <input type="text" formControlName="username" />
@@ -14,42 +20,40 @@
       </button>
     </form>
 
-    <button (click)="renderSignUp()" class="action-link">
+    <button
+      *ngIf="!successRegister"
+      (click)="renderSignUp()"
+      class="action-link"
+    >
       NEW USERS REGISTER HERE
     </button>
   </div>
 
   <!-- register new users -->
-  <div *ngIf="successRegister">
-    <p>Registration successful! Please log in using your credentials.</p>
-  </div>
+  <div class="display-group">
+    <div *ngIf="registerNewUser">
+      <form [formGroup]="signUpForm" (ngSubmit)="onSignupSubmit()">
+        <div class="field">
+          <input type="text" formControlName="username" placeholder="" />
+          <label>USERNAME</label>
+        </div>
 
-  <div *ngIf="registerNewUser">
-    <h1>Sign Up as a New User</h1>
-    <form [formGroup]="signUpForm" (ngSubmit)="onSignupSubmit()">
-      <div>
-        <label>Username: </label>
-        <input type="text" formControlName="username" placeholder="Username" />
-      </div>
-      <div>
-        <label>Request Additional Permissions? </label>
-        <input type="checkbox" formControlName="username" />
-      </div>
-      <div>
-        <label>Password: </label>
-        <input type="text" formControlName="password" placeholder="Password" />
-      </div>
-      <div>
-        <label>Re-enter Password: </label>
-        <input
-          type="text"
-          formControlName="password_check"
-          placeholder="Password Again"
-        />
-      </div>
-      <button class="action-bttn" type="submit">
-        SIGN UP
-      </button>
-    </form>
+        <div class="field">
+          <input type="text" formControlName="password" placeholder="" />
+          <label>PASSWORD</label>
+        </div>
+        <div class="field">
+          <input type="text" formControlName="password_check" placeholder="" />
+          <label>RE-ENTER PASSWORD</label>
+        </div>
+        <div class="field" class="checkbox-field">
+          <label>ADMIN STATUS? </label>
+          <input type="checkbox" formControlName="username" />
+        </div>
+        <button class="action-bttn" type="submit">
+          SIGN UP
+        </button>
+      </form>
+    </div>
   </div>
 </div>
