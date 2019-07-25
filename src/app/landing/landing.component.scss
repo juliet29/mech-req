@@ -3,7 +3,6 @@
 
 .landing-body {
   padding-top: $navHeaderHeight;
-
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -16,6 +15,7 @@
   flex-direction: column;
   justify-content: center;
   background-color: $white;
+  text-shadow: $textShadow;
 
   span {
     font-size: 3rem;
@@ -55,6 +55,7 @@
     right: 2rem;
     font-size: 1.5rem;
     box-shadow: $boxShadow;
+    text-shadow: none;
   }
 }
 
