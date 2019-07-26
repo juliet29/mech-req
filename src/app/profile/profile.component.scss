@@ -39,18 +39,22 @@ $userInfoHeight: 21vh;
 }
 
 .user-requests-data {
-  background-color: $accentColor;
   ul {
     padding: 0;
   }
+}
+
+li:nth-of-type(2n - 1) {
+  background-color: $primaryColor;
+  color: white;
 }
 
 .display-always {
   display: flex;
   justify-content: space-between;
   padding: 1rem 2rem;
-  padding-bottom: 0;
-  //border-bottom: 3px solid yellowgreen; -- change color when dispplay not present
+  padding-bottom: 0.5rem;
+
   align-items: center;
 }
 
@@ -62,12 +66,16 @@ $userInfoHeight: 21vh;
   height: 40px;
   width: 40px;
   border-radius: 50%;
-  border: 10px solid yellowgreen;
+  border: 10px solid $accentColorDark;
 }
 
 .display-sometimes {
-  //display: none;
-  background-color: green;
+  display: none;
   padding: 0 2rem;
   padding-bottom: 2rem;
+  border-bottom: 3px solid $accentColorDark;
+}
+
+.show {
+  display: block;
 }

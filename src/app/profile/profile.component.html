@@ -23,19 +23,25 @@
     <div class="spacer"></div>
     <div class="user-requests-data">
       <ul>
-        <li *ngFor="let req of u_request">
-          <div class="display-always">
-            <div class="text">
-              <div class="complaint-title">Complaint Title</div>
-              <div>MUDOR - DRYING BEDS</div>
-              <div>JULY 18, 2019 - 8:30 AM</div>
-              <div>STATUS: PENDING</div>
+        <li *ngFor="let req of user_request; let i = index">
+          <div class="request-displays">
+            <div class="display-always">
+              <div class="text">
+                <div class="complaint-title">
+                  {{ req.title }}
+                </div>
+                <div>{{ req.location | uppercase }}</div>
+                <div>JULY 18, 2019 - 8:30 AM</div>
+                <div>STATUS: PENDING</div>
+                <div>REQUUEST ID: {{ req.request_id }}</div>
+              </div>
+              <button (click)="dropdown()">
+                <div id="{{ i }}" class="toggle-dropdown"></div>
+              </button>
             </div>
-            <div class="toggle-dropdown"></div>
-          </div>
-          <div class="display-sometimes">
-            Here is a body of text that might perhaps represent a complaint that
-            a person at the plant might so happen to have.
+            <div class="display-sometimes">
+              {{ req.complaint }}
+            </div>
           </div>
         </li>
       </ul>
