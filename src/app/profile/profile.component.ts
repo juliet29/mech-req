@@ -51,7 +51,7 @@ export class ProfileComponent implements OnInit {
       target_id
     ] as HTMLElement;
 
-    // logi for showing and hiding dropdown
+    // for showing and hiding dropdown
     if (displayElement.classList.contains("show")) {
       displayElement.classList.remove("show");
     } else {

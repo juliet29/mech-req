@@ -1,27 +1,51 @@
-<h1>Existing Service Requests</h1>
+<div class="view-requests-body">
+  <div class="action-bar filter">
+    <div class="action-bar-title">Filter by</div>
 
-<div class="tb-overflow">
-        <table>
-                <tr>
-                        <th>Date </th>
-                        <th>Time </th>
-                        <th>Request ID </th>
-                        <th>Location </th>
-                        <th>Author</th>
-                        <th>Complaint </th> 
-                        <th>Mark as Complete?</th>
-                </tr>
-                <tr *ngFor="let a_request of request">
-                        <td>{{ a_request.date_sent }}</td>
-                        <td>{{ a_request.time_sent }}</td>
-                        <td>{{ a_request.request_id }}</td>
-                        <td>{{ a_request.location }}</td>
-                        <td>{{ a_request.author }}</td>
-                        <td>{{ a_request.complaint }}</td>
-                        <td><button (click)=completeRequest(a_request.request_id)>Mark as Complete</button></td>
-                </tr> 
-        </table>
+    <div class="action-bar-item">
+      <div class="action-bar-item-head">
+        <div class="title">Section</div>
+        <button (click)="dropdown()">
+          <div class="toggle-dropdown"></div>
+        </button>
+      </div>
+      <div class="action-bar-display-sometimes">
+        <ul>
+          <li>AUTHOR</li>
+          <li>PLANT</li>
+          <li>LOCATION</li>
+          <li>DATE</li>
+          <li>LOCATION</li>
+          <li>STATUS</li>
+          <li>DEPARTMENT</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="action-bar-item">
+      <div class="action-bar-item-head">
+        <div class="title">Query</div>
+        <button (click)="dropdownQuery()">
+          <div class="toggle-dropdown"></div>
+        </button>
+      </div>
+      <div class="action-bar-display-sometimes-query">
+        <div>
+          Please select a section to query by.
+        </div>
+        <ul *ngIf="sectionSelected">
+          <li>item one</li>
+          <li>item two</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="action-bar update">
+    <div class="action-bar-title">Mark as</div>
+    <div class="action-button-small">PENDING</div>
+    <div class="action-button-small">ONGOING</div>
+    <div class="action-button-small">COMPLETE</div>
+  </div>
+  <div class="user-requests-temporary"></div>
 </div>
-
-
-<a class="go-home" routerLink="/">Go Home</a>

@@ -31,6 +31,18 @@
       <a routerLink="/Profile"> View Your Requests</a>
       <br />
       <a routerLink="/Home">Make A Request</a>
+      <br />
+      <a
+        *ngIf="_UserService.currentUserValue.is_staff"
+        routerLink="/ViewRequest"
+        >Review All Requests</a
+      >
+      <br />
+      <a
+        *ngIf="_UserService.currentUserValue.is_staff"
+        routerLink="/ViewRequest"
+        >Review Analytics</a
+      >
     </div>
 
     <div *ngIf="!_UserService.currentUserValue">

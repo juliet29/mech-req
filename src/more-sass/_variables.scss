@@ -64,6 +64,13 @@ $navHeaderHeight: calc(#{$logoHeight} + 2 *#{$headerMargin});
   width: 100vw;
 }
 
+@mixin dropdown-button($size: 40px, $color: $accentColorDark) {
+  height: $size;
+  width: $size;
+  border-radius: 50%;
+  border: $size/4 solid $color;
+}
+
 // *************** responsiveness ******************* //
 
 // Small tablets and large smartphones (landscape view)

@@ -1,39 +1,57 @@
-@import 'src/more-sass/_variables.scss';
-h1, a, table {
-    text-align: center;
+@import "src/more-sass/_variables.scss";
+.view-requests-body {
+  @include container;
+  height: auto;
+  background-color: $white;
+  font-size: 1rem;
 }
 
-table {
-    max-width: 95vw;
-    margin: 3rem auto;
-    border-collapse: collapse;
-    overflow-y:scroll;
-    height:50vh;
-    display:block;
-    border-top: 1px solid lightblue;
-    border-bottom: 3px solid lightblue;
-    @include sm {
-        font-size: 0.001rem;
-        margin: 1rem 0;
-    }
+.action-bar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 0 $headerMargin;
+  padding-bottom: 1rem;
 }
 
-td, th {
-    padding: 1rem 2rem;
-    text-align: left;
-    @include sm {
-        padding: 1rem 0.1rem;
-        text-align: center;
-    }
+.action-bar-item {
+  padding: 0 0.1rem;
+  width: 6rem;
+
+  ul {
+    padding: 0;
+  }
+}
+.action-bar-item-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid black;
+  padding: 0 0.1rem;
+
+  .title {
+    color: black;
+  }
+  .toggle-dropdown {
+    @include dropdown-button($size: 10px);
+  }
 }
 
-tr {
-    border: 1px solid lightblue;
+.action-button-small {
+  @include cute-button;
+  font-size: 0.5rem;
+  padding: 0.3rem 0.8rem;
+  line-height: 1rem;
 }
 
-.tb-overflow {
-    overflow-x: auto;
-    padding: 1rem;
-    margin: 0 auto;
+.action-bar-display-sometimes {
+  display: none;
 }
 
+.show {
+  display: block;
+}
+
+.action-bar-display-sometimes-query {
+  display: none;
+}
