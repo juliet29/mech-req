@@ -17,6 +17,15 @@ const months = [
   "DEC"
 ];
 
+const sections = [
+  "AUTHOR",
+  "PLANT",
+  "LOCATION",
+  "DATE",
+  "STATUS",
+  "DEPARTMENT"
+];
+
 @Component({
   selector: "app-view-request",
   templateUrl: "./view-request.component.html",
@@ -25,6 +34,8 @@ const months = [
 export class ViewRequestComponent implements OnInit {
   // array of all the ServiceRequest objects from the API
   public request;
+  private sections: string[] = sections;
+  private sectionSelected: boolean = false;
 
   constructor(
     private _RequestService: RequestService,
@@ -100,7 +111,6 @@ export class ViewRequestComponent implements OnInit {
     let displayElement = document.getElementsByClassName(
       "action-bar-display-sometimes"
     )[0] as HTMLElement;
-    console.log(displayElement);
 
     // for showing and hiding dropdown
     if (displayElement.classList.contains("show")) {

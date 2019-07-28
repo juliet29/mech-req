@@ -51,6 +51,14 @@
 .show {
   display: block;
 }
+.section-button {
+  width: 100%;
+  text-align: left;
+  padding-left: 0.3rem;
+  &:hover {
+    color: $primaryColor;
+  }
+}
 
 .action-bar-display-sometimes-query {
   display: none;

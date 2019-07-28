@@ -11,13 +11,11 @@
       </div>
       <div class="action-bar-display-sometimes">
         <ul>
-          <li>AUTHOR</li>
-          <li>PLANT</li>
-          <li>LOCATION</li>
-          <li>DATE</li>
-          <li>LOCATION</li>
-          <li>STATUS</li>
-          <li>DEPARTMENT</li>
+          <li *ngFor="let section of sections">
+            <button class="section-button" (click)="filterSection()">
+              <div class="section-options">{{ section }}</div>
+            </button>
+          </li>
         </ul>
       </div>
     </div>
