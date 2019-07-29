@@ -74,6 +74,21 @@ $userInfoHeight: 21vh;
   border: $size/4 solid $color;
 }
 
+// what requests should generally look like
+@mixin requests {
+  max-width: 100vw;
+  height: 100vh;
+
+  ul {
+    padding: 0;
+  }
+
+  li:nth-of-type(2n - 1) {
+    background-color: $primaryColor;
+    color: white;
+  }
+}
+
 // *************** responsiveness ******************* //
 
 // Small tablets and large smartphones (landscape view)

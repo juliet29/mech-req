@@ -24,7 +24,8 @@
     <div class="user-requests-data">
       <ul>
         <li *ngFor="let req of user_request; let i = index">
-          <app-show-requests [req]="req"></app-show-requests>
+          <div>{{ i }}</div>
+          <app-show-requests id="{{ i }}" [req]="req"></app-show-requests>
         </li>
       </ul>
     </div>

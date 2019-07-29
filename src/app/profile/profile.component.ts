@@ -16,12 +16,6 @@ export class ProfileComponent implements OnInit {
   private author_id: number;
   public user_request: any;
 
-  // @ViewChild("toDisplay", { static: true }) toDisplay: ElementRef;
-
-  // ngAfterViewInit() {
-  //   console.log(this.toDisplay);
-  // }
-
   ngOnInit() {
     this.author_id = this._UserService.currentUserValue.id;
     if (this.author_id) {

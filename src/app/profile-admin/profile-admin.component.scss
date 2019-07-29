@@ -68,3 +68,7 @@
 .action-bar-send {
   width: min-content;
 }
+
+.all-requests {
+  @include requests;
+}

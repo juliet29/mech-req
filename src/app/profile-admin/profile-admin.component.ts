@@ -55,8 +55,6 @@ export class ProfileAdminComponent implements OnInit {
     this._RequestService.list().subscribe(
       data => {
         this.requests = data as requestData;
-        //let author: any;
-        //this.query("author");
       },
       err => console.error(err),
       () => {

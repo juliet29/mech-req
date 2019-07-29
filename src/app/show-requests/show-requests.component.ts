@@ -8,22 +8,19 @@ import { requestData } from "src/app/_models/requestData";
 })
 export class ShowRequestsComponent implements OnInit {
   @Input() req: any;
+  @Input() id: any;
 
   constructor() {}
 
-  ngOnInit() {
-    console.log("hi!");
-    console.log(this.req);
-  }
+  ngOnInit() {}
 
   dropdown() {
-    let target = event.target as HTMLElement;
-    let target_id = Number(target.id);
+    let my_id = "button" + this.id;
 
     // the specific dropdown that is being shown
-    let displayElement = document.getElementsByClassName("display-sometimes")[
-      target_id
-    ] as HTMLElement;
+    let displayElement = document
+      .getElementById(my_id)
+      .getElementsByClassName("display-sometimes")[0] as HTMLElement;
 
     // for showing and hiding dropdown
     if (displayElement.classList.contains("show")) {

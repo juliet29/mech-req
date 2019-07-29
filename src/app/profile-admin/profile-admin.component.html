@@ -54,5 +54,14 @@
     <div class="action-button-small">ONGOING</div>
     <div class="action-button-small">COMPLETE</div>
   </div>
-  <div class="user-requests-temporary"></div>
+
+  <div class="all-requests">
+    <div>
+      <ul>
+        <li *ngFor="let req of requests; let i = index">
+          <app-show-requests id="{{ i }}" [req]="req"></app-show-requests>
+        </li>
+      </ul>
+    </div>
+  </div>
 </div>
