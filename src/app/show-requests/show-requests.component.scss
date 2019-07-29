@@ -1,5 +1,5 @@
 @import "src/more-sass/_variables.scss";
-// show requests body??
+
 .request-display {
   font-size: 0.7rem;
 }
@@ -10,6 +10,10 @@
   padding-bottom: 0.5rem;
 
   align-items: center;
+}
+
+.text {
+  width: 70%;
 }
 
 .complaint-title {

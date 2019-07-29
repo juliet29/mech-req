@@ -1,5 +1,8 @@
 <div class="request-display">
   <div class="display-always">
+    <div *ngIf="admin" class="checkbox">
+      <input type="checkbox" />
+    </div>
     <div class="text">
       <div class="complaint-title">
         {{ req.title }}
@@ -8,7 +11,7 @@
       <div>{{ req.location | uppercase }}</div>
       <div>JULY 18, 2019 - 8:30 AM</div>
       <div>STATUS: {{ req.status }}</div>
-      <div *ngIf="req.author">AUTHOR: {{ req.author }}</div>
+      <div *ngIf="admin">AUTHOR: {{ req.author }}</div>
     </div>
     <button (click)="dropdown()">
       <div class="toggle-dropdown"></div>

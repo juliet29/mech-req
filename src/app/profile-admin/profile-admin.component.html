@@ -61,7 +61,11 @@
     <div>
       <ul>
         <li *ngFor="let req of requests; let i = index">
-          <app-show-requests id="{{ i }}" [req]="req"></app-show-requests>
+          <app-show-requests
+            id="{{ i }}"
+            [req]="req"
+            [admin]="admin"
+          ></app-show-requests>
         </li>
       </ul>
     </div>

@@ -9,6 +9,7 @@ import { requestData } from "src/app/_models/requestData";
 export class ShowRequestsComponent implements OnInit {
   @Input() req: any;
   @Input() id: any;
+  @Input() admin: boolean;
 
   constructor() {}
 

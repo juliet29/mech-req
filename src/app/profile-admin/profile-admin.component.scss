@@ -61,6 +61,11 @@ $actionBarItemWidth: 4rem;
 
 .action-bar-display-sometimes-query {
   display: none;
+  height: fit-content;
+  li {
+    height: 4rem;
+    margin-bottom: 1rem;
+  }
 }
 
 .show {

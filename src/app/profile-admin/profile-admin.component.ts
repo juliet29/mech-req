@@ -36,10 +36,12 @@ const sections = [
 export class ProfileAdminComponent implements OnInit {
   // array of all the ServiceRequest objects from the API
   public requests;
+  public admin: boolean = true;
   private sections: string[] = sections;
   private sectionSelected: boolean = false;
   private sectionName: string = "Section";
   private queryName: string = "Query";
+  private possibleQuerries: any[];
 
   constructor(
     private _RequestService: RequestService,
@@ -50,7 +52,7 @@ export class ProfileAdminComponent implements OnInit {
     this.getRequests();
   }
 
-  // get the requests from the API -- this should all be in the service tbh
+  // ------ get requests from the api -------------------------
   getRequests() {
     console.log("getRequest");
     this._RequestService.list().subscribe(
@@ -64,7 +66,7 @@ export class ProfileAdminComponent implements OnInit {
     );
   }
 
-  // mark requests as complete
+  // ----- mark requests as complete, pending, or ongoing ----------
   completeRequest(id) {
     console.log(id);
     let my_request: any;
@@ -89,7 +91,7 @@ export class ProfileAdminComponent implements OnInit {
     });
   }
 
-  // handle filtering!
+  // --------- handle filtering ------------------------
   dropdown(my_class: string) {
     // the specific dropdown that is being shown
     let displayElement = document.getElementsByClassName(
@@ -104,6 +106,7 @@ export class ProfileAdminComponent implements OnInit {
     }
   }
 
+  // get possible list of queries to filter by
   query(selector) {
     let optionsArray: any[] = [];
     this.requests.forEach(function(current_req) {
@@ -119,7 +122,6 @@ export class ProfileAdminComponent implements OnInit {
     this.dropdown("action-bar-display-sometimes");
   }
 
-  possibleQuerries: any[];
   dropdownQuery() {
     this.dropdown("action-bar-display-sometimes-query");
     let my_query = this.sectionName.toLowerCase();
@@ -146,25 +148,25 @@ export class ProfileAdminComponent implements OnInit {
 
   filterQuery() {
     let option: any = event.target as HTMLElement;
-    let optionText: string = option.innerText;
+    let optionText: string = option.innerHTML;
     console.log(option);
     if (optionText) {
       this.queryName = optionText;
     }
+    //hide the options
+    this.dropdownQuery();
   }
 
   filter() {
     let filteredRequests: any[] = [];
     this.requests.forEach(currentRequest => {
       let section = this.sectionName.toLowerCase();
-      //console.log(section);
-      // console.log(currentRequest[section]);
-      // console.log(this.queryName);
+      console.log(currentRequest);
       if (currentRequest[section] == this.queryName) {
         filteredRequests.push(currentRequest);
       }
-      console.log(filteredRequests);
-      this.requests = filteredRequests;
     });
+    console.log(filteredRequests);
+    this.requests = filteredRequests;
   }
 }
