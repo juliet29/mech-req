@@ -1,0 +1,19 @@
+<div class="request-displays">
+  <div class="display-always">
+    <div class="text">
+      <div class="complaint-title">
+        {{ req.title }}
+      </div>
+      <div>REQUEST ID: {{ req.request_id }}</div>
+      <div>{{ req.location | uppercase }}</div>
+      <div>JULY 18, 2019 - 8:30 AM</div>
+      <div>STATUS: PENDING</div>
+    </div>
+    <button (click)="dropdown()">
+      <div id="{{ i }}" class="toggle-dropdown"></div>
+    </button>
+  </div>
+  <div class="display-sometimes">
+    {{ req.complaint }}
+  </div>
+</div>

@@ -4,8 +4,8 @@
 
     <div class="action-bar-item">
       <div class="action-bar-item-head">
-        <div class="title">Section</div>
-        <button (click)="dropdown()">
+        <div class="title">{{ sectionName }}</div>
+        <button (click)="dropdownSection()">
           <div class="toggle-dropdown"></div>
         </button>
       </div>
@@ -28,14 +28,23 @@
         </button>
       </div>
       <div class="action-bar-display-sometimes-query">
-        <div>
-          Please select a section to query by.
+        <div *ngIf="!sectionSelected">
+          Please select an section to query by.
         </div>
         <ul *ngIf="sectionSelected">
-          <li>item one</li>
-          <li>item two</li>
+          <li *ngFor="let query of possibleQuerries">
+            {{ query }}
+          </li>
         </ul>
       </div>
+    </div>
+
+    <div class="action-bar-item action-bar-send">
+      <button>
+        <div class="action-button-small">
+          FILTER
+        </div>
+      </button>
     </div>
   </div>
 

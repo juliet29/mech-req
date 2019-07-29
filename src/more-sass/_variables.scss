@@ -25,6 +25,9 @@ $navZ: 3000; // this is the z-index of the nav body
 $headerMargin: 0.7rem;
 $navHeaderHeight: calc(#{$logoHeight} + 2 *#{$headerMargin});
 
+// other vars
+$userInfoHeight: 21vh;
+
 // mixins
 @mixin fancy-font {
   text-shadow: $textShadow;

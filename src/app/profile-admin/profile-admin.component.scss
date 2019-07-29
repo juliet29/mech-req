@@ -3,7 +3,7 @@
   @include container;
   height: auto;
   background-color: $white;
-  font-size: 1rem;
+  font-size: 0.8rem;
 }
 
 .action-bar {
@@ -16,7 +16,7 @@
 
 .action-bar-item {
   padding: 0 0.1rem;
-  width: 6rem;
+  width: 4rem;
 
   ul {
     padding: 0;
@@ -31,6 +31,7 @@
 
   .title {
     color: black;
+    padding-right: 0.3rem;
   }
   .toggle-dropdown {
     @include dropdown-button($size: 10px);
@@ -47,10 +48,6 @@
 .action-bar-display-sometimes {
   display: none;
 }
-
-.show {
-  display: block;
-}
 .section-button {
   width: 100%;
   text-align: left;
@@ -62,4 +59,12 @@
 
 .action-bar-display-sometimes-query {
   display: none;
+}
+
+.show {
+  display: block;
+}
+
+.action-bar-send {
+  width: min-content;
 }

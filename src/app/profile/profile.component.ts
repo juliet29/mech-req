@@ -15,6 +15,7 @@ export class ProfileComponent implements OnInit {
 
   private author_id: number;
   public user_request: any;
+
   // @ViewChild("toDisplay", { static: true }) toDisplay: ElementRef;
 
   // ngAfterViewInit() {
@@ -40,22 +41,5 @@ export class ProfileComponent implements OnInit {
 
   logout() {
     this._UserService.logout();
-  }
-
-  dropdown() {
-    let target = event.target as HTMLElement;
-    let target_id = Number(target.id);
-
-    // the specific dropdown that is being shown
-    let displayElement = document.getElementsByClassName("display-sometimes")[
-      target_id
-    ] as HTMLElement;
-
-    // for showing and hiding dropdown
-    if (displayElement.classList.contains("show")) {
-      displayElement.classList.remove("show");
-    } else {
-      displayElement.classList.add("show");
-    }
   }
 }

@@ -6,7 +6,6 @@
   font-size: 0.7rem;
 }
 
-$userInfoHeight: 21vh;
 .user-info {
   //padding: 0 $displayPadding;
   padding: 0 2rem;
@@ -47,32 +46,4 @@ $userInfoHeight: 21vh;
 li:nth-of-type(2n - 1) {
   background-color: $primaryColor;
   color: white;
-}
-
-.display-always {
-  display: flex;
-  justify-content: space-between;
-  padding: 1rem 2rem;
-  padding-bottom: 0.5rem;
-
-  align-items: center;
-}
-
-.complaint-title {
-  font-size: 1rem;
-}
-
-.toggle-dropdown {
-  @include dropdown-button;
-}
-
-.display-sometimes {
-  display: none;
-  padding: 0 2rem;
-  padding-bottom: 2rem;
-  border-bottom: 3px solid $accentColorDark;
-}
-
-.show {
-  display: block;
 }
