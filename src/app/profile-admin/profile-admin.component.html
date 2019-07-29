@@ -22,7 +22,7 @@
 
     <div class="action-bar-item">
       <div class="action-bar-item-head">
-        <div class="title">Query</div>
+        <div class="title">{{ queryName }}</div>
         <button (click)="dropdownQuery()">
           <div class="toggle-dropdown"></div>
         </button>
@@ -33,14 +33,16 @@
         </div>
         <ul *ngIf="sectionSelected">
           <li *ngFor="let query of possibleQuerries">
-            {{ query }}
+            <button (click)="filterQuery()">
+              <div class="query-button">{{ query }}</div>
+            </button>
           </li>
         </ul>
       </div>
     </div>
 
     <div class="action-bar-item action-bar-send">
-      <button>
+      <button (click)="filter()">
         <div class="action-button-small">
           FILTER
         </div>

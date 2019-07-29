@@ -21,11 +21,11 @@ const months = [
 
 const sections = [
   "AUTHOR",
-  "PLANT",
+  //"PLANT",
   "LOCATION",
   "DATE",
-  "STATUS",
-  "DEPARTMENT"
+  "STATUS"
+  //"DEPARTMENT"
 ];
 
 @Component({
@@ -39,6 +39,7 @@ export class ProfileAdminComponent implements OnInit {
   private sections: string[] = sections;
   private sectionSelected: boolean = false;
   private sectionName: string = "Section";
+  private queryName: string = "Query";
 
   constructor(
     private _RequestService: RequestService,
@@ -73,7 +74,6 @@ export class ProfileAdminComponent implements OnInit {
       data => {
         my_request = data[0];
         my_request.status = 1;
-        console.log(my_request);
         // replace this request
         this.edit(id, my_request);
       },
@@ -95,7 +95,6 @@ export class ProfileAdminComponent implements OnInit {
     let displayElement = document.getElementsByClassName(
       my_class
     )[0] as HTMLElement;
-    console.log(displayElement.classList);
 
     // for showing and hiding dropdown
     if (displayElement.classList.contains("show")) {
@@ -106,7 +105,6 @@ export class ProfileAdminComponent implements OnInit {
   }
 
   query(selector) {
-    console.log(selector);
     let optionsArray: any[] = [];
     this.requests.forEach(function(current_req) {
       let possibleOption = current_req[selector];
@@ -114,7 +112,6 @@ export class ProfileAdminComponent implements OnInit {
         optionsArray.push(possibleOption);
       }
     });
-    console.log(optionsArray);
     return optionsArray;
   }
 
@@ -124,11 +121,9 @@ export class ProfileAdminComponent implements OnInit {
 
   possibleQuerries: any[];
   dropdownQuery() {
-    console.log("query drop");
     this.dropdown("action-bar-display-sometimes-query");
     let my_query = this.sectionName.toLowerCase();
     this.possibleQuerries = this.query(my_query);
-    console.log(this.possibleQuerries);
   }
 
   // need to make this smoother
@@ -138,6 +133,7 @@ export class ProfileAdminComponent implements OnInit {
     let optionText: string = option.innerText;
     if (optionText) {
       this.sectionName = optionText;
+      console.log(this.sectionName);
 
       //hide the options
       this.dropdownSection();
@@ -146,5 +142,29 @@ export class ProfileAdminComponent implements OnInit {
       this.sectionSelected = true;
       this.dropdownQuery();
     }
+  }
+
+  filterQuery() {
+    let option: any = event.target as HTMLElement;
+    let optionText: string = option.innerText;
+    console.log(option);
+    if (optionText) {
+      this.queryName = optionText;
+    }
+  }
+
+  filter() {
+    let filteredRequests: any[] = [];
+    this.requests.forEach(currentRequest => {
+      let section = this.sectionName.toLowerCase();
+      //console.log(section);
+      // console.log(currentRequest[section]);
+      // console.log(this.queryName);
+      if (currentRequest[section] == this.queryName) {
+        filteredRequests.push(currentRequest);
+      }
+      console.log(filteredRequests);
+      this.requests = filteredRequests;
+    });
   }
 }
