@@ -86,31 +86,44 @@ export class ProfileAdminComponent implements OnInit {
         }
       }
     }
-
-    console.log(this.validCheckboxes);
+  }
+  private requestStatus: Number;
+  markAsPending() {
+    this.requestStatus = 0;
+    this.updateRequest();
   }
 
-  completeRequest(id) {
-    console.log(id);
-    let my_request: any;
+  // need to update later
+  markAsOngoing() {
+    this.requestStatus = 0;
+    this.updateRequest();
+  }
 
-    // get value of request to mark as complete
-    this._RequestService.list_request(id).subscribe(
-      data => {
-        my_request = data[0];
-        my_request.status = 1;
-        // replace this request
-        this.edit(id, my_request);
-      },
-      error => {
-        console.log("Error", error);
-      }
-    );
+  markAsComplete() {
+    this.requestStatus = 1;
+    this.updateRequest();
+  }
+
+  updateRequest() {
+    this.validCheckboxes.forEach(requestId => {
+      this.requests.forEach(my_request => {
+        console.log(my_request);
+        console.log(my_request.request_id, requestId);
+        // get requests that match current request_id in the array
+        if (my_request.request_id == requestId) {
+          my_request.status = this.requestStatus;
+          this.edit(requestId, my_request);
+        }
+      });
+    });
+    // refresh the page when the edit occurs
+    this.ngOnInit();
+    //this._Router.navigate(["/ProfileAdmin"]);
   }
 
   edit(id, my_request) {
     this._RequestService.edit(id, my_request).subscribe(data => {
-      this._Router.navigate(["/ViewRequest"]);
+      console.log(id);
     });
   }
 

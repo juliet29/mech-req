@@ -19,7 +19,7 @@ export class ShowRequestsComponent implements OnInit {
   public isChecked: boolean;
   sendCheckboxInfo() {
     let my_target = event.target as HTMLInputElement;
-    console.log(my_target.checked);
+
     let checkboxInfo: {
       id: BigInteger;
       valid: boolean;

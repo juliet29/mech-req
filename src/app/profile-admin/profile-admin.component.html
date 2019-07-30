@@ -50,11 +50,17 @@
     </div>
   </div>
 
-  <div class="action-bar update">
+  <div *ngIf="validCheckboxes.length > 0" class="action-bar update">
     <div class="action-bar-title">Mark as</div>
-    <div class="action-button-small">PENDING</div>
-    <div class="action-button-small">ONGOING</div>
-    <div class="action-button-small">COMPLETE</div>
+    <button (click)="markAsPending()">
+      <div class="action-button-small">PENDING</div>
+    </button>
+    <button (click)="markAsOngoing()">
+      <div class="action-button-small">ONGOING</div>
+    </button>
+    <button (click)="markAsComplete()">
+      <div class="action-button-small">COMPLETE</div>
+    </button>
   </div>
 
   <div class="all-requests">
