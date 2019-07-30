@@ -1,13 +1,23 @@
-<h1> Where is the problem at {{ plantName }} ?</h1>
-<ul class="location-select">
-    <li  *ngFor="let location of locations">
-        <button (click)="openModal('custom-modal-1')"> {{ location }}</button> 
+<div class="plant-select-body">
+  <h1>Where is the problem at {{ plantName }} ?</h1>
+  <ul class="location-select">
+    <li *ngFor="let location of locations">
+      <button (click)="openModal('custom-modal-1')">
+        <div class="location-link">
+          {{ location | uppercase }}
+        </div>
+      </button>
     </li>
-</ul>
- 
-<app-modal id="custom-modal-1">
-    <app-problem-form [currentPlantName] = "plantName"></app-problem-form>
-    <button class="modal-bttn" (click)="closeModal('custom-modal-1');" routerLink="/Profile">Close</button>
-</app-modal>
-    
-<a class="go-home" routerLink="/">Go Home</a>
+  </ul>
+
+  <app-modal id="custom-modal-1">
+    <app-problem-form [currentPlantName]="plantName"></app-problem-form>
+    <button
+      class="modal-bttn"
+      (click)="closeModal('custom-modal-1')"
+      routerLink="/Profile"
+    >
+      Close
+    </button>
+  </app-modal>
+</div>

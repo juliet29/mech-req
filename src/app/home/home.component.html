@@ -1,14 +1,9 @@
-<h1>Which plant would you like to have serviced?</h1>
+<div class="home-body">
+  <h1>Which plant would you like to have serviced?</h1>
 
-<div class="plant-select" *ngFor="let plant of plants">
-
+  <div class="plant-select" *ngFor="let plant of plants">
     <a routerLink="/{{ plant.name }}">
-        <p>There is a problem at {{ plant.name }}</p>
-        
+      <p>{{ plant.name | uppercase }}</p>
     </a>
-  
-</div> 
-
-<a class="request-link" routerLink="/ViewRequest">
-    View Existing Requests
-</a>
+  </div>
+</div>

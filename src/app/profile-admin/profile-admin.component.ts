@@ -37,6 +37,7 @@ export class ProfileAdminComponent implements OnInit {
   // array of all the ServiceRequest objects from the API
   public requests;
   public admin: boolean = true;
+  private requestStatus: Number;
   private validCheckboxes: any[] = [];
   private sections: string[] = sections;
   private sectionSelected: boolean = false;
@@ -87,7 +88,7 @@ export class ProfileAdminComponent implements OnInit {
       }
     }
   }
-  private requestStatus: Number;
+
   markAsPending() {
     this.requestStatus = 0;
     this.updateRequest();
@@ -118,7 +119,6 @@ export class ProfileAdminComponent implements OnInit {
     });
     // refresh the page when the edit occurs
     this.ngOnInit();
-    //this._Router.navigate(["/ProfileAdmin"]);
   }
 
   edit(id, my_request) {

@@ -14,7 +14,11 @@ const routes: Routes = [
   { path: "", component: LandingComponent },
   { path: "login", component: LoginComponent },
   { path: "Profile", component: ProfileComponent, canActivate: [AuthGuard] },
-  { path: "Home", component: HomeComponent, canActivate: [AuthGuard] },
+  {
+    path: "MakeRequestHome",
+    component: HomeComponent,
+    canActivate: [AuthGuard]
+  },
   { path: "Mudor", component: MudorComponent, canActivate: [AuthGuard] },
   {
     path: "Lavender Hill",
