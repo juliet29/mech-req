@@ -1,5 +1,7 @@
 @import "src/more-sass/_variables.scss";
-
+.plant-select-body {
+  padding-top: $navHeaderHeight;
+}
 h1 {
   @include fancy-font;
 }

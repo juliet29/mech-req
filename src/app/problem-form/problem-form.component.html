@@ -62,6 +62,24 @@
       </div>
     </div>
 
+    <div class="departments">
+      <div class="heading">DEPARTMENTS:</div>
+      <div class="department-options">
+        <div (click)="addDepartment()" class="department-bttn">
+          MECHANICAL
+        </div>
+        <div (click)="addDepartment()" class="department-bttn">
+          ELECTRICAL
+        </div>
+        <div (click)="addDepartment()" class="department-bttn">
+          PROCESS
+        </div>
+        <div (click)="addDepartment()" class="department-bttn">
+          SAFETY
+        </div>
+      </div>
+    </div>
+
     <button
       type="submit"
       [disabled]="serviceRequestForm.pristine || serviceRequestForm.invalid"

@@ -35,12 +35,12 @@ input {
   padding: 0.5rem;
   width: 100%;
   border-style: unset;
-  border: 1px solid $darkColor;
+  border: 1px solid $primaryColor;
 }
 
 textarea {
   width: 100%;
-  border: 1px solid $darkColor;
+  border: 1px solid $primaryColor;
 }
 
 input,
@@ -72,10 +72,30 @@ textarea {
 
 button {
   width: max-content;
+  height: max-content;
+  height: -webkit-max-content;
+  height: -moz-max-content;
 }
 
 .submit-bttn {
   @include cute-button;
   padding: 0.2rem 0.8rem;
   margin: 1rem 0;
+}
+.departments {
+  margin: 1rem 0;
+}
+.department-options {
+  display: flex;
+  justify-content: space-between;
+}
+
+.department-bttn {
+  @include cute-button($accentColor);
+  padding: 0.2rem 0.4rem;
+  font-size: 0.5rem;
+}
+
+.department-selected {
+  background-color: purple !important;
 }

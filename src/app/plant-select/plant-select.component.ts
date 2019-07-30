@@ -1,33 +1,24 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { ModalService } from 'src/app/_services/modal.service';
-
+import { Component, OnInit, Input } from "@angular/core";
+import { ModalService } from "src/app/_services/modal.service";
 
 @Component({
-  selector: 'app-plant-select',
-  templateUrl: './plant-select.component.html',
-  styleUrls: ['./plant-select.component.scss']
+  selector: "app-plant-select",
+  templateUrl: "./plant-select.component.html",
+  styleUrls: ["./plant-select.component.scss"]
 })
 export class PlantSelectComponent implements OnInit {
+  constructor(private modalService: ModalService) {}
 
-  constructor(private modalService: ModalService) { }
+  ngOnInit() {}
 
-  ngOnInit() {
-  }
-  
   @Input() plantName: string;
   @Input() locations: any;
 
-
   openModal(id: string) {
-      this.modalService.open(id);
+    this.modalService.open(id);
   }
 
   closeModal(id: string) {
-      this.modalService.close(id);
+    this.modalService.close(id);
   }
-  
-  
-
-
-
 }
