@@ -1,7 +1,11 @@
 <div class="request-display">
   <div class="display-always">
     <div *ngIf="admin" class="checkbox">
-      <input type="checkbox" />
+      <input
+        (click)="sendCheckboxInfo()"
+        type="checkbox"
+        [attr.id]="'checkbox' + id"
+      />
     </div>
     <div class="text">
       <div class="complaint-title">

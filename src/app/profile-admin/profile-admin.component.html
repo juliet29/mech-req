@@ -65,6 +65,7 @@
             id="{{ i }}"
             [req]="req"
             [admin]="admin"
+            (boxChecked)="processCheckboxes($event)"
           ></app-show-requests>
         </li>
       </ul>

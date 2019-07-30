@@ -37,6 +37,7 @@ export class ProfileAdminComponent implements OnInit {
   // array of all the ServiceRequest objects from the API
   public requests;
   public admin: boolean = true;
+  private validCheckboxes: any[] = [];
   private sections: string[] = sections;
   private sectionSelected: boolean = false;
   private sectionName: string = "Section";
@@ -53,6 +54,7 @@ export class ProfileAdminComponent implements OnInit {
   }
 
   // ------ get requests from the api -------------------------
+  // -----------------------------------------------------------
   getRequests() {
     console.log("getRequest");
     this._RequestService.list().subscribe(
@@ -67,6 +69,27 @@ export class ProfileAdminComponent implements OnInit {
   }
 
   // ----- mark requests as complete, pending, or ongoing ----------
+  // ---------------------------------------------------------------
+
+  processCheckboxes(checkboxInfo: any) {
+    console.log(checkboxInfo);
+    // add id to list of valid checkboxes when checkbox checked
+    if (checkboxInfo.valid == true) {
+      this.validCheckboxes.push(checkboxInfo.id);
+    }
+
+    // remove id from list of valid checkboxes when the checkbox is unchecked
+    if (checkboxInfo.valid == false) {
+      for (let i = 0; i < this.validCheckboxes.length; i++) {
+        if (this.validCheckboxes[i] == checkboxInfo.id) {
+          this.validCheckboxes.splice(i, 1);
+        }
+      }
+    }
+
+    console.log(this.validCheckboxes);
+  }
+
   completeRequest(id) {
     console.log(id);
     let my_request: any;
@@ -92,6 +115,7 @@ export class ProfileAdminComponent implements OnInit {
   }
 
   // --------- handle filtering ------------------------
+  // ----------------------------------------------------
   dropdown(my_class: string) {
     // the specific dropdown that is being shown
     let displayElement = document.getElementsByClassName(

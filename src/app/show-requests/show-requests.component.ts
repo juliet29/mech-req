@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from "@angular/core";
+import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
 import { requestData } from "src/app/_models/requestData";
 
 @Component({
@@ -10,11 +10,31 @@ export class ShowRequestsComponent implements OnInit {
   @Input() req: any;
   @Input() id: any;
   @Input() admin: boolean;
+  @Output() boxChecked = new EventEmitter<any>();
 
   constructor() {}
 
   ngOnInit() {}
 
+  public isChecked: boolean;
+  sendCheckboxInfo() {
+    let my_target = event.target as HTMLInputElement;
+    console.log(my_target.checked);
+    let checkboxInfo: {
+      id: BigInteger;
+      valid: boolean;
+    };
+
+    checkboxInfo = {
+      id: this.req.request_id,
+      valid: my_target.checked
+    };
+
+    //console.log(this.req.request_id);
+    this.boxChecked.emit(checkboxInfo);
+  }
+
+  // control the showing of the body of the complaint
   dropdown() {
     let my_id = "button" + this.id;
 
