@@ -1,59 +1,50 @@
-@import 'src/more-sass/_variables.scss';
+@import "src/more-sass/_variables.scss";
 
+// modal should be lower than nav
 $modalZ: $navZ - 100;
-/* MODAL STYLES 
--------------------------------*/
+
 .modal {
-    /* modals are hidden by default */
-    /*display: none;*/
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
 
-    /*background-color: pink;*/
+  z-index: $modalZ;
 
-    /* modal container fixed across whole screen */
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
+  overflow: auto;
 
-    /* z-index must be higher than .jw-modal-background */
-    z-index: $modalZ;
+  .modal-body {
+    padding: 1rem;
 
-    /* enables scrolling for tall modals */
-    overflow: auto;
-
-    .modal-body {
-        padding: 1rem;
-        background: white;
-        /* margin exposes part of the modal background */
-        margin: 1rem;
-    }
-
+    background: white;
+    /* margin exposes part of the modal background */
+    margin: 1rem;
+    margin-top: $navHeaderHeight;
+  }
 }
 
 .modal-background {
-    /* modal background fixed across whole screen */
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
+  /* modal background fixed across whole screen */
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
 
-    /* semi-transparent black  */
-    background-color: #000;
-    opacity: 0.75;
-    
-    /* z-index must be below .jw-modal and above everything else  */
-    z-index: $modalZ - 100 ;
+  background-color: black;
+  opacity: 0.75;
+
+  /* z-index must be below .jw-modal and above everything else  */
+  z-index: $modalZ - 100;
 }
 
-.modal, .modal-background {
-    display: none;
+.modal,
+.modal-background {
+  display: none;
 }
-
-
 
 body.modal-open {
-    /* body overflow is hidden to hide main scrollbar when modal window is open */
-    overflow: hidden;
+  /* body overflow is hidden to hide main scrollbar when modal window is open */
+  overflow: hidden;
 }

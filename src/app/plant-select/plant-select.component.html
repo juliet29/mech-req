@@ -13,11 +13,12 @@
   <app-modal id="custom-modal-1">
     <app-problem-form [currentPlantName]="plantName"></app-problem-form>
     <button
-      class="modal-bttn"
       (click)="closeModal('custom-modal-1')"
-      routerLink="/Profile"
+      routerLink="/MakeRequestHome"
     >
-      Close
+      <div class="close-bttn">
+        CLOSE
+      </div>
     </button>
   </app-modal>
 </div>

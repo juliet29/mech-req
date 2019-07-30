@@ -56,18 +56,3 @@ button {
 button:disabled {
   background-color: $disabledColor !important;
 }
-
-// classes that cut across components
-
-.go-home {
-  @include cute-link();
-}
-
-.modal-bttn {
-  @include cute-button();
-}
-
-.fancy {
-  @include fancy-font;
-  text-align: center;
-}

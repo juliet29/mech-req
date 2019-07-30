@@ -1,40 +1,81 @@
-@import 'src/more-sass/_variables.scss';
+@import "src/more-sass/_variables.scss";
+.problem-form-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
-input {
-    height: 2em;
-    border-width: 0.1em;
-    padding: 0.5em;
-    width: inherit;
-} 
+h3 {
+  @include slim-thick-font;
+  margin-bottom: 1rem;
+}
+
+.info {
+  width: 100%;
+  margin-bottom: 0.7rem;
+}
+.heading {
+  font-size: 0.8rem;
+  font-weight: bold;
+}
 
 label {
-    display: inline-block;
-    width: 99%;
-    margin: 0 auto;
+  display: inline-block;
+  width: 99%;
+  margin: 0 auto;
 
-    p {
-        text-align: left;
-        margin: 0.5rem 0;
-    }
+  p {
+    text-align: left;
+    margin: 0.5rem 0;
+  }
 }
 
-h3, h4, p {
-    text-align: center;
+input {
+  height: 2rem;
+  padding: 0.5rem;
+  width: 100%;
+  border-style: unset;
+  border: 1px solid $darkColor;
 }
 
-.hidden{
-    display: none;
+textarea {
+  width: 100%;
+  border: 1px solid $darkColor;
+}
+
+input,
+textarea {
+  &:focus,
+  &:hover {
+    outline-color: $primaryColor;
+  }
+}
+
+.form-item {
+  margin-bottom: 1rem;
+}
+.hidden {
+  display: none;
 }
 
 .form-error {
-    p {
-        font-size: 0.7rem;
-        color: red;
-        text-align: left;
-    }
+  p {
+    font-size: 0.7rem;
+    color: red;
+    text-align: left;
+  }
 }
 
 .complaint {
-    height: 5rem;
+  height: 5rem;
 }
 
+button {
+  width: max-content;
+}
+
+.submit-bttn {
+  @include cute-button;
+  padding: 0.2rem 0.8rem;
+  margin: 1rem 0;
+}

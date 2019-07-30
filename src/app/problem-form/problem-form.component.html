@@ -1,36 +1,74 @@
-<h3 [ngClass]="{'hidden': afterSubmit}">Please Clearly Explain the Problem Below</h3>
+<div class="problem-form-body">
+  <h3 [ngClass]="{ hidden: afterSubmit }">
+    Please Clearly Explain the Problem Below
+  </h3>
 
-<div [ngClass]="{'hidden': !afterSubmit}">
+  <div [ngClass]="{ hidden: !afterSubmit }">
     <h3>Thank you for submitting a request!</h3>
     <p>Your Request ID is {{ request_id }}</p>
+  </div>
+
+  <div class="info">
+    <span class="heading">TIME:</span> <br />
+    {{ today_nice }}
+  </div>
+
+  <div class="info">
+    <span class="heading"> LOCATION: </span> <br />
+    {{ location }} at {{ plant }}
+  </div>
+
+  <form
+    [formGroup]="serviceRequestForm"
+    (ngSubmit)="onSubmit()"
+    [ngClass]="{ hidden: afterSubmit }"
+  >
+    <div class="form-item">
+      <label class="heading">COMPLAINT TITLE:</label>
+      <input
+        type="text"
+        formControlName="complaint_title"
+        placheholder="Briefly descibe your complaint - only 30 words available!"
+      />
+      <div
+        class="form-error"
+        *ngIf="
+          serviceRequestForm.controls['complaint_title'].invalid &&
+          (serviceRequestForm.controls['complaint_title'].dirty ||
+            serviceRequestForm.controls['complaint_title'].touched)
+        "
+      >
+        <p>Please enter a title for the complaint.</p>
+      </div>
+    </div>
+
+    <div class="form-item">
+      <label class="heading"> COMPLAINT:</label>
+      <textarea
+        class="complaint"
+        type="text"
+        formControlName="complaint"
+        placheholder="There is an issue with..."
+      ></textarea>
+      <div
+        class="form-error"
+        *ngIf="
+          serviceRequestForm.controls['complaint'].invalid &&
+          (serviceRequestForm.controls['complaint'].dirty ||
+            serviceRequestForm.controls['complaint'].touched)
+        "
+      >
+        <p>Please enter a valid complaint, and describe it fully.</p>
+      </div>
+    </div>
+
+    <button
+      type="submit"
+      [disabled]="serviceRequestForm.pristine || serviceRequestForm.invalid"
+    >
+      <div class="submit-bttn">
+        SUBMIT REQUEST
+      </div>
+    </button>
+  </form>
 </div>
-
-<p>Time Submitted: {{ today_nice }} </p>
-<p>Location of Problem: {{ location }} at {{ plant }} </p>
-
-<form [formGroup]="serviceRequestForm" (ngSubmit)="onSubmit()" [ngClass]="{'hidden': afterSubmit}">
-    <div>
-        <label><p>Complaint Title:</p></label>
-        <input type="text" formControlName="complaint_title" placheholder="Briefly descibe your complaint - only 30 words available!">
-        <div class="form-error" *ngIf="serviceRequestForm.controls['complaint_title'].invalid && 
-        (serviceRequestForm.controls['complaint_title'].dirty || serviceRequestForm.controls['complaint_title'].touched)">
-            <p>Please enter a title for the complaint.</p>
-        </div>
-    </div>
-    
-    <div>
-        <label> <p>Complaint:</p></label> 
-        <input class="complaint" type="text" formControlName="complaint" placheholder="There is an issue with...">
-        <div class="form-error" *ngIf="serviceRequestForm.controls['complaint'].invalid && 
-        (serviceRequestForm.controls['complaint'].dirty || serviceRequestForm.controls['complaint'].touched)">
-            <p>Please enter a valid complaint, and describe it fully.</p>
-        </div>
-    </div>
-    
-    <button class="modal-bttn" type="submit" [disabled]="serviceRequestForm.pristine || serviceRequestForm.invalid" >Submit Request</button>
-</form>
-
- 
-
-
-

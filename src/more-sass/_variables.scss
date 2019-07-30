@@ -34,6 +34,11 @@ $userInfoHeight: 21vh;
   font-weight: 300;
 }
 
+@mixin slim-thick-font {
+  font-weight: 300;
+  text-shadow: 0.1px 0.1px 0.1px black;
+}
+
 @mixin cute-link(
   $background-color: transparent,
   $width: 50%,
