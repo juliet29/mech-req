@@ -94,13 +94,20 @@ export class LoginComponent implements OnInit {
     ) {
       alert("Passwords don't match!");
     } else {
-      this._UserService.signup({
+      let check = this._UserService.signup({
         username: this.signUpForm.get("username").value,
-        //phoneNumber: this.signUpForm.get("phoneNumber").value,
         email: this.signUpForm.get("email").value,
         password: this.signUpForm.get("password").value,
         is_staff: this.signUpForm.get("admin").value
       });
+      console.log(check);
+      if (check) {
+        this._UserService.signupPhone({
+          username: this.signUpForm.get("username").value,
+          phone_number: JSON.stringify(this.signUpForm.get("phoneNumber").value)
+        });
+      }
+
       this.successRegister = true;
       this.registerNewUser = false;
     }
