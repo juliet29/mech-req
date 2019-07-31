@@ -94,8 +94,12 @@ button {
   @include cute-button($accentColor);
   padding: 0.2rem 0.4rem;
   font-size: 0.5rem;
+  &:hover,
+  &:active {
+    background-color: $accentColorDark;
+  }
 }
 
 .department-selected {
-  background-color: purple !important;
+  background-color: $accentColorDark;
 }

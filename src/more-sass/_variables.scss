@@ -62,6 +62,10 @@ $userInfoHeight: 21vh;
   &:hover {
     background-color: $darkColorHover;
   }
+
+  &:disabled {
+    background-color: $disabledColor !important;
+  }
 }
 
 @mixin container {

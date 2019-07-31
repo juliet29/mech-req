@@ -1,43 +1,57 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl, Validators, FormGroup,} from '@angular/forms';
-import { UserService } from 'src/app/_services/user.service';
-import { Router } from '@angular/router';
+import { Component, OnInit } from "@angular/core";
+import { FormControl, Validators, FormGroup } from "@angular/forms";
+import { UserService } from "src/app/_services/user.service";
+import { Router } from "@angular/router";
+import { MustMatch } from "src/app/_helpers/must-match.validator";
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  selector: "app-login",
+  templateUrl: "./login.component.html",
+  styleUrls: ["./login.component.scss"]
 })
 export class LoginComponent implements OnInit {
-
   public registerNewUser: boolean = false;
   public successRegister: boolean = false;
   public test: string;
 
-  loggedIn: boolean=false;
+  loggedIn: boolean = false;
 
-  constructor(private _UserService: UserService, private _Router: Router) { }
+  constructor(private _UserService: UserService, private _Router: Router) {}
 
   ngOnInit() {
+    console.log(this.signUpForm.get("admin").value);
   }
 
   loginForm = new FormGroup({
-    username: new FormControl('', [Validators.required]),
-    password: new FormControl('', [Validators.required])
+    username: new FormControl("", [Validators.required]),
+    password: new FormControl("", [Validators.required])
   });
 
   signUpForm = new FormGroup({
-    username: new FormControl('', [Validators.required]),
-    permissions: new FormControl(false, [Validators.required]),
-    // validators should check that passwords match on the client side
-    password: new FormControl('', [Validators.required]),
-    password_check: new FormControl('', [Validators.required]),
-  })
+    username: new FormControl("", [
+      Validators.required,
+      Validators.minLength(3)
+    ]),
+    email: new FormControl("", [Validators.required]),
+    phoneNumber: new FormControl("", [
+      Validators.required,
+      Validators.minLength(5)
+    ]),
+    password: new FormControl("", [
+      Validators.required,
+      Validators.minLength(8)
+    ]),
+    passwordCheck: new FormControl("", [
+      Validators.required,
+      Validators.minLength(8)
+    ]),
+    admin: new FormControl(false, [Validators.required])
+  });
 
   login() {
     this._UserService.login({
-      'username': this.loginForm.get('username').value,
-      'password': this.loginForm.get('password').value
+      username: this.loginForm.get("username").value,
+      password: this.loginForm.get("password").value
     });
 
     // subscribe to the token as evidence of logged in or not
@@ -45,39 +59,50 @@ export class LoginComponent implements OnInit {
       data => {
         if (data) {
           console.log("hello");
-          this.loggedIn = true,
-          console.log(this.loggedIn)
-          }    
-        },
-      err => console.error(err),
-    )
+          (this.loggedIn = true), console.log(this.loggedIn);
+        }
+      },
+      err => console.error(err)
+    );
 
     // redirect url or regular one when user gets in succesfully
     if (this.loggedIn) {
-      console.log("redirecting")
-      let redirect = this._UserService.redirectUrl ? this._Router.parseUrl(this._UserService.redirectUrl) : '/Profile';
+      console.log("redirecting");
+      let redirect = this._UserService.redirectUrl
+        ? this._Router.parseUrl(this._UserService.redirectUrl)
+        : "/Profile";
 
-      this._Router.navigateByUrl(redirect); 
-      console.log(redirect)
+      this._Router.navigateByUrl(redirect);
+      console.log(redirect);
     }
-    
   }
 
-  onLoginSubmit(){
+  onLoginSubmit() {
     this.login();
   }
 
   renderSignUp() {
+    // show the sign up page
     this.registerNewUser = true;
   }
 
   onSignupSubmit() {
-    this._UserService.signup({
-      'username': this.signUpForm.get('username').value,
-      'password': this.signUpForm.get('password').value,
-    });
-    this.successRegister = true;
-    this.registerNewUser = false;
+    // check that passwords match
+    if (
+      this.signUpForm.get("password").value !=
+      this.signUpForm.get("passwordCheck").value
+    ) {
+      alert("Passwords don't match!");
+    } else {
+      this._UserService.signup({
+        username: this.signUpForm.get("username").value,
+        //phoneNumber: this.signUpForm.get("phoneNumber").value,
+        email: this.signUpForm.get("email").value,
+        password: this.signUpForm.get("password").value,
+        is_staff: this.signUpForm.get("admin").value
+      });
+      this.successRegister = true;
+      this.registerNewUser = false;
+    }
   }
-
 }

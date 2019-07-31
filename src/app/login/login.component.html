@@ -34,23 +34,102 @@
     <div *ngIf="registerNewUser">
       <form [formGroup]="signUpForm" (ngSubmit)="onSignupSubmit()">
         <div class="field">
-          <input type="text" formControlName="username" placeholder="" />
+          <input type="text" formControlName="username" />
           <label>USERNAME</label>
+          <div
+            class="form-error"
+            *ngIf="
+              signUpForm.controls['username'].invalid &&
+              (signUpForm.controls['username'].dirty ||
+                signUpForm.controls['username'].touched)
+            "
+          >
+            <p>
+              Please enter a valid username - should have at least 3 characters
+              and be similar to your name.
+            </p>
+          </div>
+        </div>
+        <div class="field">
+          <input type="text" formControlName="email" placeholder="" />
+          <label>EMAIL</label>
+          <div
+            class="form-error"
+            *ngIf="
+              signUpForm.controls['email'].invalid &&
+              (signUpForm.controls['email'].dirty ||
+                signUpForm.controls['email'].touched)
+            "
+          >
+            <p>
+              Please enter a valid email address.
+            </p>
+          </div>
+        </div>
+        <div class="field">
+          <input type="text" formControlName="phoneNumber" placeholder="" />
+          <label>PHONE NUMBER</label>
+          <div
+            class="form-error"
+            *ngIf="
+              signUpForm.controls['phoneNumber'].invalid &&
+              (signUpForm.controls['phoneNumber'].dirty ||
+                signUpForm.controls['phoneNumber'].touched)
+            "
+          >
+            <p>
+              Please enter a valid phone number.
+            </p>
+          </div>
         </div>
 
         <div class="field">
           <input type="text" formControlName="password" placeholder="" />
           <label>PASSWORD</label>
+          <div
+            class="form-error"
+            *ngIf="
+              signUpForm.controls['password'].invalid &&
+              (signUpForm.controls['password'].dirty ||
+                signUpForm.controls['password'].touched)
+            "
+          >
+            <p>
+              Please enter a strong password. A strong password is:
+            </p>
+            <ul>
+              <li>At least 8 characters</li>
+              <li>Not completely numeric</li>
+              <li>Not too similar to profile information</li>
+              <li>Not a commonly used password or phrase</li>
+            </ul>
+          </div>
         </div>
         <div class="field">
-          <input type="text" formControlName="password_check" placeholder="" />
+          <input type="text" formControlName="passwordCheck" placeholder="" />
           <label>RE-ENTER PASSWORD</label>
+          <div
+            class="form-error"
+            *ngIf="
+              signUpForm.controls['passwordCheck'].invalid &&
+              (signUpForm.controls['passwordCheck'].dirty ||
+                signUpForm.controls['passwordCheck'].touched)
+            "
+          >
+            <p>
+              Please make sure your passwords match.
+            </p>
+          </div>
         </div>
         <div class="field" class="checkbox-field">
           <label>ADMIN STATUS? </label>
-          <input type="checkbox" formControlName="username" />
+          <input type="checkbox" formControlName="admin" />
         </div>
-        <button class="action-bttn" type="submit">
+        <button
+          type="submit"
+          [disabled]="signUpForm.pristine || signUpForm.invalid"
+          class="action-bttn"
+        >
           SIGN UP
         </button>
       </form>

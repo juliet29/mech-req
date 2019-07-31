@@ -1,10 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
-import {
-  FormControl,
-  Validators,
-  FormGroup,
-  FormBuilder
-} from "@angular/forms";
+import { FormControl, Validators, FormGroup } from "@angular/forms";
 import { UserService } from "src/app/_services/user.service";
 import { RequestService } from "src/app/_services/request.service";
 import { PlantIdService } from "src/app/_services/plant-id.service";
@@ -128,15 +123,21 @@ export class ProblemFormComponent implements OnInit {
   addDepartment() {
     let currDep = event.target as HTMLElement;
     let currDepText = currDep.innerText;
+    console.log(currDep);
     console.log(currDep.classList);
-    currDep.classList.add("depatment-selected");
-    this.departments.push(currDepText);
 
-    for (let i = 0; i < this.departments.length; i++) {
-      if (this.departments[i] == currDepText) {
-        this.departments.splice(i, 1);
-        currDep.classList.remove("depatment-selected");
+    if (currDep.classList.contains("department-selected")) {
+      console.log("second click");
+      for (let i = 0; i < this.departments.length; i++) {
+        if (this.departments[i] == currDepText) {
+          this.departments.splice(i, 1);
+          currDep.classList.remove("department-selected");
+        }
       }
+    } else {
+      console.log("first click");
+      currDep.classList.add("department-selected");
+      this.departments.push(currDepText);
     }
 
     console.log(this.departments);
@@ -149,9 +150,10 @@ export class ProblemFormComponent implements OnInit {
     this.complaint_title = this.serviceRequestForm.get("complaint_title").value;
     this.complaint = this.serviceRequestForm.get("complaint").value;
     this.location = this.plant + " - " + this.location;
-    this.author = this._UserService.username;
+    this.author = this._UserService.currentUserValue.id;
+
     this.afterSubmit = true;
-    //this.postSubmit();
+    this.postSubmit();
   }
 
   // prepare and actually post the submission
@@ -163,7 +165,9 @@ export class ProblemFormComponent implements OnInit {
       location: this.location,
       title: this.complaint_title,
       complaint: this.complaint,
-      author: this._UserService.currentUserValue.id
+      author: this.author,
+      departments: JSON.stringify(this.departments),
+      plant: this.plant
     };
     this._RequestService.create(this.new_request);
   }

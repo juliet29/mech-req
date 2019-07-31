@@ -8,7 +8,7 @@
       <button class="action-link" (click)="refreshToken()">
         REFRESH LOGIN
       </button>
-      <a routerLink="/Home">
+      <a routerLink="/MakeRequestHome">
         <div class="regular-link">
           MAKE NEW SERVICE REQUEST
         </div>
@@ -24,7 +24,6 @@
     <div class="user-requests-data">
       <ul>
         <li *ngFor="let req of user_request; let i = index">
-          <div>{{ i }}</div>
           <app-show-requests id="{{ i }}" [req]="req"></app-show-requests>
         </li>
       </ul>

@@ -38,11 +38,11 @@
         >Review All Requests</a
       >
       <br />
-      <a
+      <!-->a
         *ngIf="_UserService.currentUserValue.is_staff"
         routerLink="/ViewRequest"
         >Review Analytics</a
-      >
+    --->
     </div>
 
     <div *ngIf="!_UserService.currentUserValue">

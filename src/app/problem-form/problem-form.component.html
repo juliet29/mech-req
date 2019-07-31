@@ -25,11 +25,7 @@
   >
     <div class="form-item">
       <label class="heading">COMPLAINT TITLE:</label>
-      <input
-        type="text"
-        formControlName="complaint_title"
-        placheholder="Briefly descibe your complaint - only 30 words available!"
-      />
+      <input type="text" formControlName="complaint_title" />
       <div
         class="form-error"
         *ngIf="
@@ -38,7 +34,7 @@
             serviceRequestForm.controls['complaint_title'].touched)
         "
       >
-        <p>Please enter a title for the complaint.</p>
+        <p>Please enter a title for the complaint (25 characters max).</p>
       </div>
     </div>
 
@@ -48,7 +44,6 @@
         class="complaint"
         type="text"
         formControlName="complaint"
-        placheholder="There is an issue with..."
       ></textarea>
       <div
         class="form-error"
