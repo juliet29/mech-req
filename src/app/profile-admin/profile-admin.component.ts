@@ -96,12 +96,12 @@ export class ProfileAdminComponent implements OnInit {
 
   // need to update later
   markAsOngoing() {
-    this.requestStatus = 0;
+    this.requestStatus = 1;
     this.updateRequest();
   }
 
   markAsComplete() {
-    this.requestStatus = 1;
+    this.requestStatus = 2;
     this.updateRequest();
   }
 

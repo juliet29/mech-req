@@ -4,6 +4,6 @@ export interface requestData {
   location: string;
   title: string;
   complaint: string;
-  status: Number;
+  status: any;
   author: Number;
 }

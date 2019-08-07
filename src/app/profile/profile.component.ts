@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
 import { UserService } from "src/app/_services/user.service";
 import { RequestService } from "src/app/_services/request.service";
+import { requestData } from "src/app/_models/requestData";
 
 @Component({
   selector: "app-profile",
@@ -24,9 +25,17 @@ export class ProfileComponent implements OnInit {
   }
 
   getUserRequest() {
-    this._RequestService
-      .list_user(this.author_id)
-      .subscribe(data => (this.user_request = data), err => console.error(err));
+    this._RequestService.list_user(this.author_id).subscribe(
+      data => {
+        this.user_request = data as requestData[];
+
+        this.user_request.forEach(req => {
+          req.time_sent = this._RequestService.formatTime(req.time_sent);
+          req.status = this._RequestService.formatStatus(req.status);
+        });
+      },
+      err => console.error(err)
+    );
   }
 
   refreshToken() {

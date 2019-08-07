@@ -8,6 +8,7 @@ import { tokenData } from "../_models/tokenData";
   providedIn: "root"
 })
 export class UserService {
+  private apiURL = "http://127.0.0.1:8000/mech-app/";
   // http options used for making API calls
   private httpOptions: any;
 
@@ -72,11 +73,7 @@ export class UserService {
   // register a user
   public signup(user) {
     this.http
-      .post(
-        "http://127.0.0.1:8000/mech-app/users/",
-        JSON.stringify(user),
-        this.httpOptions
-      )
+      .post(this.apiURL + "users/", JSON.stringify(user), this.httpOptions)
       .subscribe(
         data => {
           console.log("Sign Up Request is successful ", data);
@@ -89,7 +86,7 @@ export class UserService {
   public signupPhone(userDetails) {
     return this.http
       .post(
-        "http://127.0.0.1:8000/mech-app/userdetails/",
+        this.apiURL + "userdetails/",
         JSON.stringify(userDetails),
         this.httpOptions
       )
@@ -108,14 +105,12 @@ export class UserService {
     let my_username = JSON.parse(my_user).username;
 
     // get the authentication token for the user
-    this.http
-      .post("http://127.0.0.1:8000/mech-app/token/", my_user, this.httpOptions)
-      .subscribe(
-        data => {
-          this.updateData(data["token"], my_username);
-        },
-        err => console.error(err)
-      );
+    this.http.post(this.apiURL + "token/", my_user, this.httpOptions).subscribe(
+      data => {
+        this.updateData(data["token"], my_username);
+      },
+      err => console.error(err)
+    );
   }
 
   // refresh JWT to extend time of user login
@@ -125,7 +120,7 @@ export class UserService {
 
     this.http
       .post(
-        "http://127.0.0.1:8000/mech-app/token/refresh/",
+        this.apiURL + "token/refresh/",
         JSON.stringify({ token: this.currentTokenValue.token }),
         this.httpOptions
       )
@@ -180,17 +175,15 @@ export class UserService {
     if (this.token && my_username) {
       // get information about the user and put in local storage
       let param1 = new HttpParams().set("username", my_username);
-      this.http
-        .get("http://127.0.0.1:8000/mech-app/users/", { params: param1 })
-        .subscribe(
-          userdata => {
-            let _userdata = userdata[0] as UserData;
-            localStorage.setItem("currentUser", JSON.stringify(_userdata));
-            this.currentUserSubject.next(_userdata);
-            return _userdata;
-          },
-          err => console.error(err)
-        );
+      this.http.get(this.apiURL + "users/", { params: param1 }).subscribe(
+        userdata => {
+          let _userdata = userdata[0] as UserData;
+          localStorage.setItem("currentUser", JSON.stringify(_userdata));
+          this.currentUserSubject.next(_userdata);
+          return _userdata;
+        },
+        err => console.error(err)
+      );
     }
   }
 }
