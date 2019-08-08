@@ -28,11 +28,6 @@ export class ProfileComponent implements OnInit {
     this._RequestService.list_user(this.author_id).subscribe(
       data => {
         this.user_request = data as requestData[];
-
-        this.user_request.forEach(req => {
-          req.time_sent = this._RequestService.formatTime(req.time_sent);
-          req.status = this._RequestService.formatStatus(req.status);
-        });
       },
       err => console.error(err)
     );

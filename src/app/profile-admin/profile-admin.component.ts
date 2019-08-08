@@ -60,7 +60,7 @@ export class ProfileAdminComponent implements OnInit {
     console.log("getRequest");
     this._RequestService.list().subscribe(
       data => {
-        this.requests = data as requestData;
+        this.requests = data as requestData[];
       },
       err => console.error(err),
       () => {

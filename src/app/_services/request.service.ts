@@ -18,7 +18,7 @@ export class RequestService {
 
   // use http.get() to load data from API endpoint
   list() {
-    return this.http.get(this.apiURL);
+    return this.http.get(this.apiURL + "service/");
     // should add error handling
   }
 

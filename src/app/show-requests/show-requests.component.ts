@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
-import { requestData } from "src/app/_models/requestData";
+import { RequestService } from "src/app/_services/request.service";
 
 @Component({
   selector: "app-show-requests",
@@ -12,9 +12,13 @@ export class ShowRequestsComponent implements OnInit {
   @Input() admin: boolean;
   @Output() boxChecked = new EventEmitter<any>();
 
-  constructor() {}
+  constructor(private _RequestService: RequestService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    // formatting for time and status
+    this.req.time_sent = this._RequestService.formatTime(this.req.time_sent);
+    this.req.status = this._RequestService.formatStatus(this.req.status);
+  }
 
   public isChecked: boolean;
   sendCheckboxInfo() {
