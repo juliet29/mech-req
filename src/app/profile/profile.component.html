@@ -3,8 +3,14 @@
     <div>YOU ARE LOGGED IN AS</div>
     <div class="username">juliet</div>
     <div class="after-username">
-      <div>STATUS: ADMIN</div>
-      <div>YOUR LOGIN EXPIRES IN 30:00</div>
+      <div *ngIf="_UserService.currentUserValue.is_staff">STATUS: ADMIN</div>
+      <div *ngIf="!_UserService.currentUserValue.is_staff">
+        STATUS: GENERAL USER
+      </div>
+      <div *ngIf="loginTimeRemaining">
+        YOUR LOGIN EXPIRES IN {{ loginTimeRemaining }}
+      </div>
+      <div *ngIf="!loginTimeRemaining">YOUR LOGIN IS EXPIRED</div>
       <button class="action-link" (click)="refreshToken()">
         REFRESH LOGIN
       </button>

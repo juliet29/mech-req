@@ -9,7 +9,7 @@ import { HostListener } from "@angular/core";
 })
 export class NavComponent implements OnInit {
   private currentUser;
-  private token_date;
+  private tokenExpiry;
   showNav: boolean = false;
 
   constructor(private _UserService: UserService) {}
@@ -23,7 +23,11 @@ export class NavComponent implements OnInit {
     this._UserService.currentToken.subscribe(
       data => {
         if (data) {
-          this.token_date = data.token_expires;
+          this.tokenExpiry = new Date(data.token_expires);
+          // log out if the token is expired
+          if (!this._UserService.tokenTimeRemaining(this.tokenExpiry)) {
+            this._UserService.logout();
+          }
         }
       },
       err => console.error(err)

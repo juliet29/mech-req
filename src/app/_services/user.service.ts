@@ -61,7 +61,7 @@ export class UserService {
     this.currentToken = this.currentTokenSubject.asObservable();
   }
 
-  // easy way for components to get info about user w/o subscribing
+  // easy way for components to get info about user and the token w/o subscribing
   public get currentUserValue(): UserData {
     return this.currentUserSubject.value;
   }
@@ -185,5 +185,42 @@ export class UserService {
         err => console.error(err)
       );
     }
+  }
+
+  tokenTimeRemaining(expiryDate) {
+    let now = new Date();
+    // milliseconds remaining
+    let msRemaining = expiryDate.getTime() - now.getTime();
+
+    // return if ms remaining is less than 0
+    if (msRemaining <= 0) {
+      console.log("Token Expired");
+      return null;
+    }
+
+    // Get days from miliseconds
+    let days = msRemaining / (1000 * 60 * 60 * 24);
+    let absoluteDays = Math.floor(days);
+
+    // if still have days remaining, ignore hours and minutes
+    if (absoluteDays > 0) {
+      let timeRemaining = absoluteDays + " days";
+      console.log(timeRemaining);
+      return timeRemaining;
+    }
+
+    // get remainder from days and convert into hours
+    let hours = (days - absoluteDays) * 24;
+    let absoluteHours = Math.floor(hours);
+    let h = absoluteHours > 9 ? absoluteHours : "0" + absoluteHours;
+
+    // get remainder from hours and convert to minutes
+    let minutes = (hours - absoluteHours) * 60;
+    let absoluteMinutes = Math.floor(minutes);
+    let m = absoluteMinutes > 9 ? absoluteMinutes : "0" + absoluteMinutes;
+
+    let timeRemaining = h + ":" + m;
+    console.log(timeRemaining);
+    return timeRemaining;
   }
 }
