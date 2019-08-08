@@ -58,7 +58,7 @@ export class LoginComponent implements OnInit {
     this._UserService.currentToken.subscribe(
       data => {
         if (data) {
-          console.log("hello");
+          console.log("logged in");
           (this.loggedIn = true), console.log(this.loggedIn);
         }
       },

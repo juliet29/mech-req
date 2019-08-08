@@ -11,6 +11,7 @@ export class NavComponent implements OnInit {
   private currentUser;
   private tokenExpiry;
   showNav: boolean = false;
+  private intervalId: any;
 
   constructor(private _UserService: UserService) {}
 
@@ -25,9 +26,12 @@ export class NavComponent implements OnInit {
         if (data) {
           this.tokenExpiry = new Date(data.token_expires);
           // log out if the token is expired
-          if (!this._UserService.tokenTimeRemaining(this.tokenExpiry)) {
-            this._UserService.logout();
-          }
+          // check about every minute
+          this.intervalId = setInterval(() => {
+            if (!this._UserService.tokenTimeRemaining(this.tokenExpiry)) {
+              this._UserService.logout();
+            }
+          }, 1000 * 55);
         }
       },
       err => console.error(err)

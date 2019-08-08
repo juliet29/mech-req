@@ -17,6 +17,8 @@ export class ProfileComponent implements OnInit {
   private author_id: number;
   public user_request: any;
   public loginTimeRemaining: any;
+  public tokenExpiry: any;
+  private intervalId: any;
 
   ngOnInit() {
     // make sure that the user is logged in before getting their requests
@@ -25,10 +27,29 @@ export class ProfileComponent implements OnInit {
       this.getUserRequest();
     }
 
-    // check expiry of token
-    let token_exp = new Date(this._UserService.currentTokenValue.token_expires);
-    console.log(token_exp);
-    this.loginTimeRemaining = this._UserService.tokenTimeRemaining(token_exp);
+    this._UserService.currentToken.subscribe(
+      data => {
+        if (data) {
+          // get the date of token expiry
+          this.tokenExpiry = new Date(data.token_expires);
+          console.log(this.tokenExpiry);
+
+          // check expiry of token once, and then at at time interval
+          this.checkLogin(this.tokenExpiry);
+          let checkLoginTime = 1000 * 55;
+          this.intervalId = setInterval(
+            () => this.checkLogin(this.tokenExpiry),
+            checkLoginTime
+          );
+        }
+      },
+      err => console.error(err)
+    );
+  }
+
+  checkLogin(tokenExpiry) {
+    // get data about when the token will expire
+    this.loginTimeRemaining = this._UserService.tokenTimeRemaining(tokenExpiry);
   }
 
   getUserRequest() {
@@ -42,9 +63,18 @@ export class ProfileComponent implements OnInit {
 
   refreshToken() {
     this._UserService.refreshToken();
+    // update the log in time remaining
+    this.tokenExpiry = new Date(
+      this._UserService.currentTokenValue.token_expires
+    );
+    this.checkLogin(this.tokenExpiry);
   }
 
   logout() {
     this._UserService.logout();
+  }
+
+  ngOnDestroy() {
+    clearInterval(this.intervalId);
   }
 }

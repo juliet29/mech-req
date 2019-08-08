@@ -205,7 +205,6 @@ export class UserService {
     // if still have days remaining, ignore hours and minutes
     if (absoluteDays > 0) {
       let timeRemaining = absoluteDays + " days";
-      console.log(timeRemaining);
       return timeRemaining;
     }
 
@@ -220,7 +219,6 @@ export class UserService {
     let m = absoluteMinutes > 9 ? absoluteMinutes : "0" + absoluteMinutes;
 
     let timeRemaining = h + ":" + m;
-    console.log(timeRemaining);
     return timeRemaining;
   }
 }
