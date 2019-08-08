@@ -1,5 +1,10 @@
 <div class="login-body">
-  <div *ngIf="!_UserService.token && !registerNewUser" class="display-group">
+  <div *ngIf="loggedIn && !registerNewUser">
+    <button class="action-bttn enter-site" (click)="redirect()">
+      YOU ARE LOGGED IN - ENTER SITE
+    </button>
+  </div>
+  <div *ngIf="!loggedIn && !registerNewUser" class="display-group">
     <div class="success-message" *ngIf="successRegister">
       <p>
         REGISTRATION SUCCESFUL

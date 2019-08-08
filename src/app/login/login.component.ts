@@ -59,13 +59,16 @@ export class LoginComponent implements OnInit {
       data => {
         if (data) {
           console.log("logged in");
-          (this.loggedIn = true), console.log(this.loggedIn);
+          this.loggedIn = true;
+          console.log(this.loggedIn);
+          // redirect url or regular one when user gets in succesfully
         }
       },
       err => console.error(err)
     );
+  }
 
-    // redirect url or regular one when user gets in succesfully
+  redirect() {
     if (this.loggedIn) {
       console.log("redirecting");
       let redirect = this._UserService.redirectUrl

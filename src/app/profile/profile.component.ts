@@ -19,6 +19,7 @@ export class ProfileComponent implements OnInit {
   public loginTimeRemaining: any;
   public tokenExpiry: any;
   private intervalId: any;
+  private refresh: boolean = true;
 
   ngOnInit() {
     // make sure that the user is logged in before getting their requests
