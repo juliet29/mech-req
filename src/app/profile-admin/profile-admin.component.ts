@@ -44,6 +44,7 @@ export class ProfileAdminComponent implements OnInit {
   public sectionName: string = "Section";
   public queryName: string = "Query";
   public possibleQuerries: any[];
+  public querySelected: boolean = false;
 
   constructor(public _RequestService: RequestService, public _Router: Router) {}
 
@@ -180,6 +181,7 @@ export class ProfileAdminComponent implements OnInit {
     }
   }
 
+  // show the user the query option they chose
   filterQuery() {
     let option: any = event.target as HTMLElement;
     let optionText: string = option.innerHTML;
@@ -187,6 +189,8 @@ export class ProfileAdminComponent implements OnInit {
     if (optionText) {
       this.queryName = optionText;
     }
+    // make it possible for the filter button to be pressed
+    this.querySelected = true;
     //hide the options
     this.dropdownQuery();
   }

@@ -42,7 +42,7 @@
     </div>
 
     <div class="action-bar-item action-bar-send">
-      <button (click)="filter()">
+      <button [disabled]="!querySelected" (click)="filter()">
         <div class="action-button-small">
           FILTER
         </div>
