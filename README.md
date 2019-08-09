@@ -1,4 +1,4 @@
-# MechReq
+# Sewerage System Ghana Limited (SSGL) Service Requests 2019 - MechReq
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.0.6.
 
