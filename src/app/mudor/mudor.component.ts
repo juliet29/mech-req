@@ -1,28 +1,24 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { PLANTS } from '../_models/plantInfo';
-import { PlantIdService } from 'src/app/_services/plant-id.service';
+import { Component, OnInit, Input } from "@angular/core";
+import { PLANTS } from "../_models/plantInfo";
+import { PlantIdService } from "src/app/_services/plant-id.service";
 
-var currentPlant =  '';
+var currentPlant = "";
 export default currentPlant;
 
 @Component({
-  selector: 'app-mudor',
-  templateUrl: './mudor.component.html',
-  styleUrls: ['./mudor.component.scss']
+  selector: "app-mudor",
+  templateUrl: "./mudor.component.html",
+  styleUrls: ["./mudor.component.scss"]
 })
-
-
 export class MudorComponent implements OnInit {
-  constructor(private _PlantIdService: PlantIdService) { }
+  constructor(public _PlantIdService: PlantIdService) {}
 
   ngOnInit() {
-    this._PlantIdService.updatePlantID(this.currentPlantName)
+    this._PlantIdService.updatePlantID(this.currentPlantName);
   }
 
   PLANTS = PLANTS;
 
   currentPlantName = PLANTS[0].name;
   currentLocations = PLANTS[0].locations;
-
-
 }

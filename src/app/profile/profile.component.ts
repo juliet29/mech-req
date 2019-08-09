@@ -10,16 +10,16 @@ import { requestData } from "src/app/_models/requestData";
 })
 export class ProfileComponent implements OnInit {
   constructor(
-    private _UserService: UserService,
-    private _RequestService: RequestService
+    public _UserService: UserService,
+    public _RequestService: RequestService
   ) {}
 
-  private author_id: number;
+  public author_id: number;
   public user_request: any;
   public loginTimeRemaining: any;
   public tokenExpiry: any;
-  private intervalId: any;
-  private refresh: boolean = true;
+  public intervalId: any;
+  public refresh: boolean = true;
 
   ngOnInit() {
     // make sure that the user is logged in before getting their requests

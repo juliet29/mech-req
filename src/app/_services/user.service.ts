@@ -8,7 +8,7 @@ import { tokenData } from "../_models/tokenData";
   providedIn: "root"
 })
 export class UserService {
-  // private apiURL = "http://127.0.0.1:8000/mech-app/";
+  // public apiURL = "http://127.0.0.1:8000/mech-app/";
   // production url
   apiURL = "http://ssgl2019.pythonanywhere.com/mech-app/";
 
@@ -151,7 +151,7 @@ export class UserService {
     this.isLoggedIn = false;
   }
 
-  // private method to updata data
+  // public method to updata data
   updateData(token, my_username) {
     let tokendata: {
       token: string;

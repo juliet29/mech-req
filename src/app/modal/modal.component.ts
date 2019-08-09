@@ -1,20 +1,28 @@
-import { Component, OnInit, ElementRef, Input, OnDestroy, AfterContentInit } from '@angular/core';
-import { ModalService } from 'src/app/_services/modal.service';
-import { PlantIdService } from 'src/app/_services/plant-id.service';
-
+import {
+  Component,
+  OnInit,
+  ElementRef,
+  Input,
+  OnDestroy,
+  AfterContentInit
+} from "@angular/core";
+import { ModalService } from "src/app/_services/modal.service";
+import { PlantIdService } from "src/app/_services/plant-id.service";
 
 @Component({
-  selector: 'app-modal',
-  templateUrl: './modal.component.html',
-  styleUrls: ['./modal.component.scss']
+  selector: "app-modal",
+  templateUrl: "./modal.component.html",
+  styleUrls: ["./modal.component.scss"]
 })
 export class ModalComponent implements OnInit, OnDestroy {
   @Input() id: string;
-  private element: any;
+  public element: any;
 
-  constructor(private modalService: ModalService, 
-    private el: ElementRef,
-    private _PlantIdService: PlantIdService) { 
+  constructor(
+    public modalService: ModalService,
+    public el: ElementRef,
+    public _PlantIdService: PlantIdService
+  ) {
     this.element = el.nativeElement;
   }
 
@@ -24,8 +32,8 @@ export class ModalComponent implements OnInit, OnDestroy {
     // set up modal as the king pin
     let modal = this;
     // ensure id attribute exists
-    if (!this.id){
-      console.error('modal must have an id');
+    if (!this.id) {
+      console.error("modal must have an id");
       return;
     }
 
@@ -33,8 +41,8 @@ export class ModalComponent implements OnInit, OnDestroy {
     document.body.appendChild(this.element);
 
     //close Modal on background click
-    this.element.addEventListener('click', function (e: any) {
-      if (e.target.className === 'app-modal') {
+    this.element.addEventListener("click", function(e: any) {
+      if (e.target.className === "app-modal") {
         console.log(e.target);
         modal.close();
       }
@@ -45,7 +53,7 @@ export class ModalComponent implements OnInit, OnDestroy {
   }
 
   // remove self from modal service when component is destroyed
-  ngOnDestroy(): void{
+  ngOnDestroy(): void {
     this.modalService.remove(this.id);
     this.element.remove();
   }
@@ -54,27 +62,24 @@ export class ModalComponent implements OnInit, OnDestroy {
   no_html: string;
   location_html: any;
 
-
   // open modal
-  open(): void{
-      //console.log(this.html);
-      // set up so that user can know location when modal is open
-      this.location_html = event.target;
-      this.html = this.location_html.innerHTML;
-      this._PlantIdService.updateLocationID(this.html);
-     // console.log(this.html);
- 
-      document.body.classList.add('app-modal');
-      this.element.firstChild.style.display = 'block';
-      this.element.lastChild.style.display = 'block'; 
+  open(): void {
+    //console.log(this.html);
+    // set up so that user can know location when modal is open
+    this.location_html = event.target;
+    this.html = this.location_html.innerHTML;
+    this._PlantIdService.updateLocationID(this.html);
+    // console.log(this.html);
+
+    document.body.classList.add("app-modal");
+    this.element.firstChild.style.display = "block";
+    this.element.lastChild.style.display = "block";
   }
-   
 
   // close modal
   close(): void {
-    this.element.firstChild.style.display = 'none';
-    this.element.lastChild.style.display = 'none';
-    document.body.classList.remove('app-modal');
+    this.element.firstChild.style.display = "none";
+    this.element.lastChild.style.display = "none";
+    document.body.classList.remove("app-modal");
   }
-
 }

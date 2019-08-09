@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
 
   loggedIn: boolean = false;
 
-  constructor(private _UserService: UserService, private _Router: Router) {}
+  constructor(public _UserService: UserService, public _Router: Router) {}
 
   ngOnInit() {
     console.log(this.signUpForm.get("admin").value);

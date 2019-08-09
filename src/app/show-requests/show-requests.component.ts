@@ -12,7 +12,7 @@ export class ShowRequestsComponent implements OnInit {
   @Input() admin: boolean;
   @Output() boxChecked = new EventEmitter<any>();
 
-  constructor(private _RequestService: RequestService) {}
+  constructor(public _RequestService: RequestService) {}
 
   ngOnInit() {
     // formatting for time and status

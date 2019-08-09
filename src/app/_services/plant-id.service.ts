@@ -1,15 +1,14 @@
-import { Injectable } from '@angular/core';
-import { Subject, Observable } from 'rxjs';
+import { Injectable } from "@angular/core";
+import { Subject, Observable } from "rxjs";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class PlantIdService {
+  constructor() {}
 
-  constructor() { }
-
-  private PlantID = new Subject<any>();
-  private LocationID = new Subject<any>();
+  public PlantID = new Subject<any>();
+  public LocationID = new Subject<any>();
 
   // get info
   getPlantID(): Observable<any> {
@@ -21,15 +20,11 @@ export class PlantIdService {
   }
 
   // update info
-  updatePlantID(id: string){
+  updatePlantID(id: string) {
     this.PlantID.next(id);
   }
 
-  updateLocationID(id: string){
+  updateLocationID(id: string) {
     this.LocationID.next(id);
   }
-
-
-
-
 }

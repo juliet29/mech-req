@@ -7,7 +7,7 @@ import { ModalService } from "src/app/_services/modal.service";
   styleUrls: ["./plant-select.component.scss"]
 })
 export class PlantSelectComponent implements OnInit {
-  constructor(private modalService: ModalService) {}
+  constructor(public modalService: ModalService) {}
 
   ngOnInit() {}
 

@@ -46,9 +46,9 @@ export class ProblemFormComponent implements OnInit {
   author: any;
 
   constructor(
-    private _UserService: UserService,
-    private _RequestService: RequestService,
-    private _PlantIdService: PlantIdService
+    public _UserService: UserService,
+    public _RequestService: RequestService,
+    public _PlantIdService: PlantIdService
   ) {
     // get info about the current plant and location
     this.subscription = this._PlantIdService

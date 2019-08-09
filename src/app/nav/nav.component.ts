@@ -8,12 +8,12 @@ import { HostListener } from "@angular/core";
   styleUrls: ["./nav.component.scss"]
 })
 export class NavComponent implements OnInit {
-  private currentUser;
-  private tokenExpiry;
+  public currentUser;
+  public tokenExpiry;
   showNav: boolean = false;
-  private intervalId: any;
+  public intervalId: any;
 
-  constructor(private _UserService: UserService) {}
+  constructor(public _UserService: UserService) {}
 
   ngOnInit() {
     // get information about the user
