@@ -10,10 +10,10 @@ import { tokenData } from "../_models/tokenData";
 export class UserService {
   // private apiURL = "http://127.0.0.1:8000/mech-app/";
   // production url
-  private apiURL = "http://ssgl2019.pythonanywhere.com/mech-app/";
+  apiURL = "http://ssgl2019.pythonanywhere.com/mech-app/";
 
   // http options used for making API calls
-  private httpOptions: any;
+  httpOptions: any;
 
   // actual JWT token
   token: string;
@@ -36,14 +36,14 @@ export class UserService {
   redirectUrl: string;
 
   // Subjects that will make user info available
-  private currentUserSubject: BehaviorSubject<UserData>;
+  currentUserSubject: BehaviorSubject<UserData>;
   public currentUser: Observable<UserData>;
 
   // Subjects that will make token info available
-  private currentTokenSubject: BehaviorSubject<any>;
+  currentTokenSubject: BehaviorSubject<any>;
   public currentToken: Observable<any>;
 
-  constructor(private http: HttpClient) {
+  constructor(public http: HttpClient) {
     // declare headers for talking to database
     this.httpOptions = {
       headers: new HttpHeaders({
@@ -152,7 +152,7 @@ export class UserService {
   }
 
   // private method to updata data
-  private updateData(token, my_username) {
+  updateData(token, my_username) {
     let tokendata: {
       token: string;
       token_expires: Date;

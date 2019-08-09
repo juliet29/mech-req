@@ -37,18 +37,15 @@ export class ProfileAdminComponent implements OnInit {
   // array of all the ServiceRequest objects from the API
   public requests;
   public admin: boolean = true;
-  private requestStatus: Number;
-  private validCheckboxes: any[] = [];
-  private sections: string[] = sections;
-  private sectionSelected: boolean = false;
-  private sectionName: string = "Section";
-  private queryName: string = "Query";
-  private possibleQuerries: any[];
+  public requestStatus: Number;
+  public validCheckboxes: any[] = [];
+  public sections: string[] = sections;
+  public sectionSelected: boolean = false;
+  public sectionName: string = "Section";
+  public queryName: string = "Query";
+  public possibleQuerries: any[];
 
-  constructor(
-    private _RequestService: RequestService,
-    private _Router: Router
-  ) {}
+  constructor(public _RequestService: RequestService, public _Router: Router) {}
 
   ngOnInit() {
     this.getRequests();
