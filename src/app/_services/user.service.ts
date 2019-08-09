@@ -81,7 +81,11 @@ export class UserService {
         data => {
           console.log("Sign Up Request is successful ", data);
         },
-        err => console.error(err)
+        err => {
+          console.error(err);
+          alert("Sign Up Unsuccesful! Refresh the Page and Again");
+          console.log("not logged in");
+        }
       );
     return true;
   }
@@ -112,7 +116,11 @@ export class UserService {
       data => {
         this.updateData(data["token"], my_username);
       },
-      err => console.error(err)
+      err => {
+        console.error(err);
+        alert("Log In Unsuccesful!");
+        console.log("not logged in");
+      }
     );
   }
 

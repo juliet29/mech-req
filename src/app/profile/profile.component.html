@@ -1,8 +1,9 @@
 <div class="profile-body">
   <div class="user-info">
     <div>YOU ARE LOGGED IN AS</div>
-    <div class="username">juliet</div>
+    <div class="username">{{ _UserService.currentUserValue.username }}</div>
     <div class="after-username">
+      <div>AUTHOR ID: {{ _UserService.currentUserValue.id }}</div>
       <div *ngIf="_UserService.currentUserValue.is_staff">STATUS: ADMIN</div>
       <div *ngIf="!_UserService.currentUserValue.is_staff">
         STATUS: GENERAL USER

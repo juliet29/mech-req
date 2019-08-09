@@ -33,10 +33,10 @@ export class LoginComponent implements OnInit {
       Validators.minLength(3)
     ]),
     email: new FormControl("", [Validators.required]),
-    phoneNumber: new FormControl("", [
-      Validators.required,
-      Validators.minLength(5)
-    ]),
+    // phoneNumber: new FormControl("", [
+    //   Validators.required,
+    //   Validators.minLength(5)
+    // ]),
     password: new FormControl("", [
       Validators.required,
       Validators.minLength(8)
@@ -64,7 +64,13 @@ export class LoginComponent implements OnInit {
           // redirect url or regular one when user gets in succesfully
         }
       },
-      err => console.error(err)
+      err => {
+        console.error(err);
+        alert("Log In Unsuccesful!");
+        console.log("not logged in");
+        this.loggedIn = false;
+        console.log(this.loggedIn);
+      }
     );
   }
 
@@ -103,13 +109,21 @@ export class LoginComponent implements OnInit {
         password: this.signUpForm.get("password").value,
         is_staff: this.signUpForm.get("admin").value
       });
+      // let it be known
       console.log(check);
-      if (check) {
-        this._UserService.signupPhone({
-          username: this.signUpForm.get("username").value,
-          phone_number: JSON.stringify(this.signUpForm.get("phoneNumber").value)
-        });
+      if (check == true) {
+        alert("Sign Up Succesful");
+      } else if (check == false) {
+        alert("Sign Up Unsuccesful. Please Refresh the Page and Retry");
       }
+
+      // dont send phone numbers yet
+      // if (check) {
+      //   this._UserService.signupPhone({
+      //     username: this.signUpForm.get("username").value,
+      //     phone_number: JSON.stringify(this.signUpForm.get("phoneNumber").value)
+      //   });
+      // }
 
       this.successRegister = true;
       this.registerNewUser = false;
