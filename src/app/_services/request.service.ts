@@ -13,9 +13,9 @@ const httpOptions = {
 })
 export class RequestService {
   constructor(private http: HttpClient) {}
-
-  private apiURL = "http://127.0.0.1:8000/mech-app/";
-
+  // private apiURL = "http://127.0.0.1:8000/mech-app/";
+  // production url
+  private apiURL = "http://ssgl2019.pythonanywhere.com/mech-app/";
   // use http.get() to load data from API endpoint
   list() {
     return this.http.get(this.apiURL + "service/");

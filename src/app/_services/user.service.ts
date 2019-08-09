@@ -8,7 +8,10 @@ import { tokenData } from "../_models/tokenData";
   providedIn: "root"
 })
 export class UserService {
-  private apiURL = "http://127.0.0.1:8000/mech-app/";
+  // private apiURL = "http://127.0.0.1:8000/mech-app/";
+  // production url
+  private apiURL = "http://ssgl2019.pythonanywhere.com/mech-app/";
+
   // http options used for making API calls
   private httpOptions: any;
 
