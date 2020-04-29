@@ -4,17 +4,17 @@ import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
 // create http headers
 const httpOptions = {
   headers: new HttpHeaders({
-    "Content-Type": "application/json"
-  })
+    "Content-Type": "application/json",
+  }),
 };
 
 @Injectable({
-  providedIn: "root"
+  providedIn: "root",
 })
 export class RequestService {
   constructor(private http: HttpClient) {}
 
-  private apiURL = "http://127.0.0.1:8000/mech-app/";
+  private apiURL = "https://ssgl2019.pythonanywhere.com/mech-app/";
 
   // use http.get() to load data from API endpoint
   list() {
@@ -37,10 +37,10 @@ export class RequestService {
   create(newRequest) {
     var mytest: any;
     mytest = this.http.post(this.apiURL + "service/", newRequest).subscribe(
-      data => {
+      (data) => {
         console.log("Service Request Creation is successful ", data);
       },
-      error => {
+      (error) => {
         console.log("Error", error);
       }
     );
@@ -70,7 +70,7 @@ export class RequestService {
       "September",
       "October",
       "November",
-      "December"
+      "December",
     ];
 
     sqlTime = new Date(sqlTime);

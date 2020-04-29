@@ -1,14 +1,15 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
-import { BehaviorSubject, Observable } from "rxjs";
+import { BehaviorSubject, Observable, throwError } from "rxjs";
+import { catchError } from "rxjs/operators";
 import { UserData } from "../_models/userData";
 import { tokenData } from "../_models/tokenData";
 
 @Injectable({
-  providedIn: "root"
+  providedIn: "root",
 })
 export class UserService {
-  private apiURL = "http://127.0.0.1:8000/mech-app/";
+  private apiURL = "https://ssgl2019.pythonanywhere.com/mech-app/";
   // http options used for making API calls
   private httpOptions: any;
 
@@ -32,6 +33,9 @@ export class UserService {
   // redirect url
   redirectUrl: string;
 
+  // sign up check
+  s_check: boolean = false;
+
   // Subjects that will make user info available
   private currentUserSubject: BehaviorSubject<UserData>;
   public currentUser: Observable<UserData>;
@@ -44,8 +48,8 @@ export class UserService {
     // declare headers for talking to database
     this.httpOptions = {
       headers: new HttpHeaders({
-        "Content-Type": "application/json"
-      })
+        "Content-Type": "application/json",
+      }),
     };
 
     // give the current value of the user what is in local storage
@@ -74,28 +78,59 @@ export class UserService {
   public signup(user) {
     this.http
       .post(this.apiURL + "users/", JSON.stringify(user), this.httpOptions)
+      .pipe(
+        catchError((err) => {
+          console.log("Caught an Error With Username, Email, or Password", err);
+          alert("Caught an Error With Username, Email, or Password");
+          return throwError(err);
+        })
+      )
       .subscribe(
-        data => {
+        (data) => {
+          this.s_check = true;
+          console.log("this check", this.s_check);
           console.log("Sign Up Request is successful ", data);
         },
-        err => console.error(err)
+        (err) => {
+          console.log(
+            "User Details Not Added Because of Invalid Username, Email, or Password!",
+            err
+          );
+        }
       );
-    return true;
+    this.s_check = true;
+    console.log("this check", this.s_check);
+    return this.s_check;
   }
   // get their phone num also
   public signupPhone(userDetails) {
-    return this.http
+    let s_check = false;
+    this.http
       .post(
         this.apiURL + "userdetails/",
         JSON.stringify(userDetails),
         this.httpOptions
       )
+      .pipe(
+        catchError((err) => {
+          console.log("Caught an Error with Phone Number", err);
+          return throwError(err);
+        })
+      )
       .subscribe(
-        data => {
+        (data) => {
           console.log("User Details Added ", data);
+          s_check = true;
         },
-        err => console.error(err)
+        (err) => {
+          console.log(
+            "User Details Not Added Because of Wrong Phone Number!",
+            err
+          );
+        }
       );
+
+    return s_check;
   }
 
   // get auth token from JWT endpoint and store users data
@@ -106,10 +141,10 @@ export class UserService {
 
     // get the authentication token for the user
     this.http.post(this.apiURL + "token/", my_user, this.httpOptions).subscribe(
-      data => {
+      (data) => {
         this.updateData(data["token"], my_username);
       },
-      err => console.error(err)
+      (err) => console.error(err)
     );
   }
 
@@ -125,10 +160,10 @@ export class UserService {
         this.httpOptions
       )
       .subscribe(
-        data => {
+        (data) => {
           this.updateData(data["token"], my_username);
         },
-        err => console.error(err)
+        (err) => console.error(err)
       );
   }
 
@@ -166,7 +201,7 @@ export class UserService {
     // set info about token into local storage
     tokendata = {
       token: this.token,
-      token_expires: this.token_expires
+      token_expires: this.token_expires,
     };
 
     localStorage.setItem("currentToken", JSON.stringify(tokendata));
@@ -176,13 +211,13 @@ export class UserService {
       // get information about the user and put in local storage
       let param1 = new HttpParams().set("username", my_username);
       this.http.get(this.apiURL + "users/", { params: param1 }).subscribe(
-        userdata => {
+        (userdata) => {
           let _userdata = userdata[0] as UserData;
           localStorage.setItem("currentUser", JSON.stringify(_userdata));
           this.currentUserSubject.next(_userdata);
           return _userdata;
         },
-        err => console.error(err)
+        (err) => console.error(err)
       );
     }
   }
